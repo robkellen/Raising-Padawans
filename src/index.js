@@ -4,28 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Router } from "react-router";
+import { createBrowserHistory } from "history";
 
-//import Apollo packages to manage state
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloProvider } from "react-apollo";
 
-//api key for graphCMS content
-const API = "https://api-us-west-2.graphcms.com/v2/ckm6tysrkjks001z5cjg17gnq/master";
 
-const client = new ApolloClient({
-  link: new HttpLink({ uri: API }),
-  cache: new InMemoryCache(),
-});
+const history = createBrowserHistory();
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Router>
-        <App />
-      </Router>
-    </ApolloProvider>
+    <Router history={history}>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
