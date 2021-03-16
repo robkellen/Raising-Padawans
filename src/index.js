@@ -12,7 +12,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
 
 //api key for graphCMS content
-const API = process.env.REACT_APP_GRAPHCMS_KEY;
+const API = "https://api-us-west-2.graphcms.com/v2/ckm6tysrkjks001z5cjg17gnq/master";
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: API }),
