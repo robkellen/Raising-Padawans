@@ -1,8 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "graphql-request";
+import { makeStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import AppNav from "../components/AppNav/AppNav";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+  toolbar: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(5, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
 
 function Landing() {
+  //defining classes and theme
+  const classes = useStyles();
+
+  //setting state of posts
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -15,7 +39,7 @@ function Landing() {
           id
           title
           content {
-            text
+            html
           }
           createdAt
           image {
@@ -36,23 +60,29 @@ function Landing() {
   }, []);
 
   return (
-    <div className="wrapper">
-      {!posts.length ? (
-        <h2>Loading Posts...</h2>
-      ) : (
-        <div className="container">
-          {posts.map(({ title, id, image, content, slug }) => (
-            <article className="content" key={id}>
-              <h2>{title}</h2>
-              {/* <img src={image.url} alt="blog post" /> */}
-              <p dangerouslySetInnerHTML={{ __html: content.text }} />
-              <Link to={`/post/${slug}`}>
-                <button className="btn">Read More</button>
-              </Link>
-            </article>
-          ))}
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppNav />
+      <main className={classes.content}>
+        <div className={classes.toolbar}>
+          {!posts.length ? (
+            <h2>Loading Posts...</h2>
+          ) : (
+            <div>
+              {posts.map(({ title, id, image, content, slug }) => (
+                <article key={id}>
+                  <h2>{title}</h2>
+                  {/* <img src={image.url} alt="blog post" /> */}
+                  <p dangerouslySetInnerHTML={{ __html: content.html }} />
+                  <Link to={`/post/${slug}`}>
+                    <button className="btn">{title}</button>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </main>
     </div>
   );
 }
