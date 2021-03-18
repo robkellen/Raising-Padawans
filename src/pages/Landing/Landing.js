@@ -1,30 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "graphql-request";
-import { makeStyles } from "@material-ui/core/styles";
+import landingStyles from "./LandingStyles"
 import CssBaseline from "@material-ui/core/CssBaseline";
-import AppNav from "../components/AppNav/AppNav";
+import AppNav from "../../components/AppNav/AppNav";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  toolbar: {
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(5, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}));
+
 
 function Landing() {
   //defining classes and theme
-  const classes = useStyles();
+  const classes = landingStyles();
 
   //setting state of posts
   const [posts, setPosts] = useState([]);
