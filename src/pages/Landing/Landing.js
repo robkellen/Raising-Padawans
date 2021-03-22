@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "graphql-request";
-import landingStyles from "./LandingStyles"
+import landingStyles from "./LandingStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 import AppNav from "../../components/AppNav/AppNav";
-
-
+import HeroImage from "../../components/HeroImage/HeroImage";
 
 function Landing() {
   //defining classes and theme
@@ -53,7 +54,12 @@ function Landing() {
           {!posts.length ? (
             <h2>Loading Posts...</h2>
           ) : (
-            <div>
+            <Container className={classes.mainContainer}>
+              <Grid>
+                <Grid item xs={12}>
+                  <HeroImage />
+                </Grid>
+              </Grid>
               {posts.map(({ title, id, image, content, slug }) => (
                 <article key={id}>
                   <h2>{title}</h2>
@@ -64,7 +70,7 @@ function Landing() {
                   </Link>
                 </article>
               ))}
-            </div>
+            </Container>
           )}
         </div>
       </main>
