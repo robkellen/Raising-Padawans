@@ -13,7 +13,7 @@ const heroImageStyles = makeStyles((theme) => ({
     display: "flex",
     minWidth: "100%",
     order: 1,
-    zIndex: 1,
+    // zIndex: 1,
     overflow: "auto",
     [theme.breakpoints.up("lg")]: {
       height: 768,

@@ -19,6 +19,7 @@ import PinterestIcon from "@material-ui/icons/Pinterest";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import MailIcon from "@material-ui/icons/Mail";
+import RPTitle from "../../utils/images/RaisingPadawansTitle.svg";
 import appNavStyles from "./AppNavStyles";
 
 function AppNav() {
@@ -43,6 +44,7 @@ function AppNav() {
       <CssBaseline />
       <AppBar
         position="fixed"
+        style={{ backgroundColor: "pink" }}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -59,9 +61,7 @@ function AppNav() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Raising Padawans
-          </Typography>
+          <img src={RPTitle} alt="Raising Padawans" />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -87,28 +87,28 @@ function AppNav() {
           </IconButton>
         </div>
         <Divider />
-        <List>
+        <List className={classes.iconList}>
           <ListItem button>
             <ListItemIcon>
-              <PinterestIcon />
+              <PinterestIcon className={classes.iconButton} />
             </ListItemIcon>
             <ListItemText>RP on Pinterest</ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <InstagramIcon />
+              <InstagramIcon className={classes.iconButton} />
             </ListItemIcon>
             <ListItemText>RP on Instagram</ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <FacebookIcon />
+              <FacebookIcon className={classes.iconButton} />
             </ListItemIcon>
             <ListItemText>RP on Facebook</ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <MailIcon />
+              <MailIcon className={classes.iconButton} />
             </ListItemIcon>
             <ListItemText>Send Us A Message</ListItemText>
           </ListItem>

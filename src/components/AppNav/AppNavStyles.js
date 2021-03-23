@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { pink } from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
@@ -23,6 +24,15 @@ const appNavStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: 36,
+  },
+  iconList: {
+    marginTop: 30,
+    [theme.breakpoints.up("sm")]: {
+      paddingLeft: 8,
+    },
+  },
+  iconButton: {
+    color: pink[300],
   },
   hide: {
     display: "none",
