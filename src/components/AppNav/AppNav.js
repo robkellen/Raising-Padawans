@@ -39,7 +39,7 @@ function AppNav() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -114,7 +114,7 @@ function AppNav() {
           </ListItem>
         </List>
       </Drawer>
-    </div>
+    </React.Fragment>
   );
 }
 

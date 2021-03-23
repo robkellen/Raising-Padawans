@@ -11,6 +11,7 @@ const landingStyles = makeStyles((theme) => ({
     marginRight: "0 !important",
     paddingLeft: "0 !important",
     paddingRight: "0 !important",
+    minWidth: "100%",
   },
   toolbar: {
     display: "flex",
@@ -22,6 +23,9 @@ const landingStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(0),
+  },
+  postsContainer: {
+    order: 2,
   },
 }));
 

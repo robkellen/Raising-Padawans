@@ -52,7 +52,7 @@ function Landing() {
         <AppNav />
         <main className={classes.content}>
           <div className={classes.toolbar}>
-            <Container maxWidth="100%" className={classes.mainContainer}>
+            <Container className={classes.mainContainer}>
               {!posts.length ? (
                 <h2>Loading Posts...</h2>
               ) : (
@@ -62,16 +62,18 @@ function Landing() {
                       <HeroImage />
                     </Grid>
                   </Grid>
-                  {posts.map(({ title, id, image, content, slug }) => (
-                    <article key={id}>
-                      <h2>{title}</h2>
-                      {/* <img src={image.url} alt="blog post" /> */}
-                      <p dangerouslySetInnerHTML={{ __html: content.html }} />
-                      <Link to={`/post/${slug}`}>
-                        <button className="btn">{title}</button>
-                      </Link>
-                    </article>
-                  ))}
+                  <Container className={classes.postsContainer}>
+                    {posts.map(({ title, id, image, content, slug }) => (
+                      <article key={id}>
+                        <h2>{title}</h2>
+                        {/* <img src={image.url} alt="blog post" /> */}
+                        <p dangerouslySetInnerHTML={{ __html: content.html }} />
+                        <Link to={`/post/${slug}`}>
+                          <button className="btn">{title}</button>
+                        </Link>
+                      </article>
+                    ))}
+                  </Container>
                 </React.Fragment>
               )}
             </Container>
