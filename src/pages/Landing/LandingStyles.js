@@ -5,17 +5,17 @@ const landingStyles = makeStyles((theme) => ({
     display: "flex",
   },
   mainContainer: {
-    width: "100vw",
+    // width: "100%",
     marginTop: 40,
-    marginLeft: 0,
-    marginRight: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
+    marginLeft: "0 !important",
+    marginRight: "0 !important",
+    paddingLeft: "0 !important",
+    paddingRight: "0 !important",
   },
   toolbar: {
     display: "flex",
     alignItems: "center",
-    padding: theme.spacing(5, 0),
+    padding: theme.spacing(3, 0),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },

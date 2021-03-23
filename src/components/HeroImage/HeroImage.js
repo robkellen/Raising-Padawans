@@ -12,6 +12,7 @@ function HeroImage() {
 
   return (
     <Paper
+      square
       className={classes.mainImage}
       style={{
         backgroundImage: `url(${FamilyChristmas})`,
@@ -28,7 +29,7 @@ function HeroImage() {
       <div className={classes.overlay} />
       <Grid container>
         <Grid item md={6}>
-          <div className={classes.mainFeaturedPostContent}>
+          <div className={classes.mainImageContent}>
             <Typography
               component="h1"
               variant="h3"
