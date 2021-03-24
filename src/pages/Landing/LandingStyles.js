@@ -6,7 +6,7 @@ const landingStyles = makeStyles((theme) => ({
   },
   mainContainer: {
     // width: "100%",
-    marginTop: 40,
+    marginTop: 60,
     marginLeft: "0 !important",
     marginRight: "0 !important",
     paddingLeft: "0 !important",

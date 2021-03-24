@@ -30,8 +30,8 @@ const heroImageStyles = makeStyles((theme) => ({
   mainImageContent: {
     position: "relative",
     padding: theme.spacing(3),
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(12),
+    [theme.breakpoints.up("sm")]: {
+      padding: theme.spacing(10),
       paddingRight: 0,
     },
   },

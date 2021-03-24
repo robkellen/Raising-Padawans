@@ -6,6 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import AppNav from "../../components/AppNav/AppNav";
+import Header from "../../components/Header/Header";
 import HeroImage from "../../components/HeroImage/HeroImage";
 
 function Landing() {
@@ -58,6 +59,9 @@ function Landing() {
               ) : (
                 <React.Fragment>
                   <Grid>
+                    {/* <Grid item xs={12}> */}
+                      <Header />
+                    {/* </Grid> */}
                     <Grid item xs={12}>
                       <HeroImage />
                     </Grid>
