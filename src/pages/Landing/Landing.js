@@ -7,6 +7,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import AppNav from "../../components/AppNav/AppNav";
 import Header from "../../components/Header/Header";
+import BlogNav from "../../components/BlogNav/BlogNav";
 import HeroImage from "../../components/HeroImage/HeroImage";
 
 function Landing() {
@@ -59,25 +60,28 @@ function Landing() {
               ) : (
                 <React.Fragment>
                   <Grid>
-                    {/* <Grid item xs={12}> */}
-                      <Header />
-                    {/* </Grid> */}
                     <Grid item xs={12}>
-                      <HeroImage />
+                      <Header />
                     </Grid>
+                    {/* <Grid item xs={12}> */}
+                      <BlogNav />
+                    {/* </Grid> */}
+                    {/* <Grid item xs={12}>
+                      <HeroImage />
+                    </Grid> */}
                   </Grid>
-                  <Container className={classes.postsContainer}>
+                  {/* <Container className={classes.postsContainer}>
                     {posts.map(({ title, id, image, content, slug }) => (
                       <article key={id}>
                         <h2>{title}</h2>
-                        {/* <img src={image.url} alt="blog post" /> */}
+                        <img src={image.url} alt="blog post" />
                         <p dangerouslySetInnerHTML={{ __html: content.html }} />
                         <Link to={`/post/${slug}`}>
                           <button className="btn">{title}</button>
                         </Link>
                       </article>
                     ))}
-                  </Container>
+                  </Container> */}
                 </React.Fragment>
               )}
             </Container>

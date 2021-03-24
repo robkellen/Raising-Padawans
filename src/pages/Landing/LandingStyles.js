@@ -5,13 +5,13 @@ const landingStyles = makeStyles((theme) => ({
     display: "flex",
   },
   mainContainer: {
-    // width: "100%",
+    maxWidth: "calc(100vw - 56px)",
     marginTop: 60,
     marginLeft: "0 !important",
     marginRight: "0 !important",
     paddingLeft: "0 !important",
     paddingRight: "0 !important",
-    minWidth: "100%",
+    // minWidth: "100%",
   },
   toolbar: {
     display: "flex",

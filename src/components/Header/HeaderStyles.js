@@ -14,6 +14,7 @@ const headerStyles = makeStyles((theme) => ({
   },
   headerText: {
     padding: theme.spacing(3),
+    fontStyle: "italic",
   },
 }));
 
