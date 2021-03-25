@@ -87,30 +87,51 @@ function AppNav() {
         </div>
         <Divider />
         <List className={classes.iconList}>
-          <ListItem button>
-            <ListItemIcon>
-              <PinterestIcon className={classes.iconButton} />
-            </ListItemIcon>
-            <ListItemText>RP on Pinterest</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <InstagramIcon className={classes.iconButton} />
-            </ListItemIcon>
-            <ListItemText>RP on Instagram</ListItemText>
-          </ListItem>
+          <a
+            href="https://www.pinterest.com/raisingpadawans/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classes.aTag}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <PinterestIcon className={classes.iconButton} />
+              </ListItemIcon>
+              <ListItemText>RP on Pinterest</ListItemText>
+            </ListItem>
+          </a>
+          <a
+            href="https://www.instagram.com/raisingpadawans/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classes.aTag}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <InstagramIcon className={classes.iconButton} />
+              </ListItemIcon>
+              <ListItemText>RP on Instagram</ListItemText>
+            </ListItem>
+          </a>
           <ListItem button>
             <ListItemIcon>
               <FacebookIcon className={classes.iconButton} />
             </ListItemIcon>
             <ListItemText>RP on Facebook</ListItemText>
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <MailIcon className={classes.iconButton} />
-            </ListItemIcon>
-            <ListItemText>Send Us A Message</ListItemText>
-          </ListItem>
+          <a
+            href="mailto:rob.h.kellen@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classes.aTag}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <MailIcon className={classes.iconButton} />
+              </ListItemIcon>
+              <ListItemText>Send Us A Message</ListItemText>
+            </ListItem>
+          </a>
         </List>
       </Drawer>
     </React.Fragment>

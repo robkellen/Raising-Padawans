@@ -34,6 +34,10 @@ const appNavStyles = makeStyles((theme) => ({
   iconButton: {
     color: pink[300],
   },
+  aTag: {
+    color: pink[300],
+    textDecoration: "none",
+  },
   hide: {
     display: "none",
   },
