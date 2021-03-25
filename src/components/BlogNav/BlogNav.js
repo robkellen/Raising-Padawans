@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import HomeTabContent from "../HomeTabContent/HomeTabContent";
+import HomeTabContent from "../BlogContent/HomeTabContent/HomeTabContent";
 import blogNavStyles from "./BlogNavStyles";
 
 function TabPanel(props) {
@@ -22,8 +21,8 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
+        <Box>
+          <React.Fragment>{children}</React.Fragment>
         </Box>
       )}
     </div>
@@ -71,34 +70,33 @@ function BlogNav() {
             centered={!scrollableTabs}
             indicatorColor="primary"
             textColor="primary"
-            aria-label="scrollable force tabs example"
+            aria-label="blog navigation items"
           >
-            <Tab label="Home" {...a11yProps(0)} />
-            <Tab label="Mom Life" {...a11yProps(1)} />
-            <Tab label="Adventures" {...a11yProps(2)} />
-            <Tab label="Books" {...a11yProps(3)} />
-            <Tab label="Crafts" {...a11yProps(4)} />
-            <Tab label="About" {...a11yProps(5)} />
+            <Tab aria-label="Home" label="Home" {...a11yProps(0)} />
+            <Tab aria-label="Mom Life" label="Mom Life" {...a11yProps(1)} />
+            <Tab aria-label="Adventures" label="Adventures" {...a11yProps(2)} />
+            <Tab aria-label="Books" label="Books" {...a11yProps(3)} />
+            <Tab aria-label="Crafts" label="Crafts" {...a11yProps(4)} />
+            <Tab aria-label="About" label="About" {...a11yProps(5)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          {/* <HomeTabContent /> */}
-          Test
+          <HomeTabContent />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Mom Life
+          {/* Mom Life */}
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Adventures
+          {/* Adventures */}
         </TabPanel>
         <TabPanel value={value} index={3}>
-          Books
+          {/* Books */}
         </TabPanel>
         <TabPanel value={value} index={4}>
-          Crafts
+          {/* Crafts */}
         </TabPanel>
         <TabPanel value={value} index={5}>
-          About
+          {/* About */}
         </TabPanel>
       </div>
     </React.Fragment>

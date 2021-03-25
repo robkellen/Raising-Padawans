@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "graphql-request";
 import Grid from "@material-ui/core/Grid";
-import HeroImage from "../../components/HeroImage/HeroImage";
+import HeroImage from "../../HeroImage/HeroImage";
 import Container from "@material-ui/core/Container";
 import homeTabContentStyles from "./HomeTabContentStyles";
 
@@ -37,7 +37,6 @@ function HomeTabContent() {
       );
 
       setPosts(posts);
-      console.log(posts);
     };
 
     fetchPosts();
