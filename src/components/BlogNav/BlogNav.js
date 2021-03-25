@@ -5,6 +5,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import HomeTabContent from "../HomeTabContent/HomeTabContent";
 import blogNavStyles from "./BlogNavStyles";
 
@@ -15,10 +17,9 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`scrollable-force-tabpanel-${index}`}
-      aria-labelledby={`scrollable-force-tab-${index}`}
+      id={`scrollable-prevent-tabpanel-${index}`}
+      aria-labelledby={`scrollable-prevent-tab-${index}`}
       {...other}
-      centered
     >
       {value === index && (
         <Box p={3}>
@@ -37,14 +38,18 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `scrollable-force-tab-${index}`,
-    "aria-controls": `scrollable-force-tabpanel-${index}`,
+    id: `scrollable-prevent-tab-${index}`,
+    "aria-controls": `scrollable-prevent-tabpanel-${index}`,
   };
 }
 
 function BlogNav() {
   //define styles
   const classes = blogNavStyles();
+
+  //determine screen size of user to make tabs centered on large devices, and scrollable on small devices
+  const theme = useTheme();
+  const scrollableTabs = useMediaQuery(theme.breakpoints.down("sm"));
 
   //set initial state
   const [value, setValue] = useState(0);
@@ -57,16 +62,16 @@ function BlogNav() {
   return (
     <React.Fragment>
       <div className={classes.root}>
-        <AppBar position="static" color="default">
+        <AppBar position="static" color="default" className={classes.tabs}>
           <Tabs
             value={value}
             onChange={handleChange}
-            variant="scrollable"
-            scrollButtons="on"
+            variant={scrollableTabs ? "scrollable" : "standard"}
+            scrollButtons="off"
+            centered={!scrollableTabs}
             indicatorColor="primary"
             textColor="primary"
             aria-label="scrollable force tabs example"
-            centered
           >
             <Tab label="Home" {...a11yProps(0)} />
             <Tab label="Mom Life" {...a11yProps(1)} />
@@ -77,7 +82,8 @@ function BlogNav() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <HomeTabContent />
+          {/* <HomeTabContent /> */}
+          Test
         </TabPanel>
         <TabPanel value={value} index={1}>
           Mom Life

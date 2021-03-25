@@ -6,6 +6,11 @@ const blogNavStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: theme.palette.background.paper,
   },
+  tabs: {
+    [theme.breakpoints.up("md")]: {
+      margin: "auto",
+    },
+  },
 }));
 
 export default blogNavStyles;
