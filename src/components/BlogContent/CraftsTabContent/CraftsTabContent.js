@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import HeroImage from "../../HeroImage/HeroImage";
 import Container from "@material-ui/core/Container";
 
-function MomLifeTabContent() {
+function CraftsTabContent() {
   //setting state of posts
   const [posts, setPosts] = useState([]);
 
@@ -15,7 +15,7 @@ function MomLifeTabContent() {
         "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
         `
       { 
-        posts (where: {momLifeCategory: true}){
+        posts (where: {craftsCategory: true}){
           id
           title
           content {
@@ -62,4 +62,4 @@ function MomLifeTabContent() {
   );
 }
 
-export default MomLifeTabContent;
+export default CraftsTabContent;

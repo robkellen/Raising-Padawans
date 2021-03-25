@@ -7,6 +7,10 @@ import Box from "@material-ui/core/Box";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import HomeTabContent from "../BlogContent/HomeTabContent/HomeTabContent";
+import MomLifeTabContent from "../BlogContent/MomLifeTabContent/MomLifeTabContent";
+import AdventuresTabContent from "../BlogContent/AdventuresTabContent/AdventuresTabContent";
+import BooksTabContent from "../BlogContent/BooksTabContent/BooksTabContent";
+import CraftsTabContent from "../BlogContent/CraftsTabContent/CraftsTabContent";
 import blogNavStyles from "./BlogNavStyles";
 
 function TabPanel(props) {
@@ -61,7 +65,7 @@ function BlogNav() {
   return (
     <React.Fragment>
       <div className={classes.root}>
-        <AppBar position="static" color="default" className={classes.tabs}>
+        <AppBar position="static" color="transparent" className={classes.tabs}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -84,16 +88,16 @@ function BlogNav() {
           <HomeTabContent />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {/* Mom Life */}
+          <MomLifeTabContent />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {/* Adventures */}
+          <AdventuresTabContent />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          {/* Books */}
+          <BooksTabContent />
         </TabPanel>
         <TabPanel value={value} index={4}>
-          {/* Crafts */}
+          <CraftsTabContent />
         </TabPanel>
         <TabPanel value={value} index={5}>
           {/* About */}
