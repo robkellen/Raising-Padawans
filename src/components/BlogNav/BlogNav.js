@@ -69,18 +69,69 @@ function BlogNav() {
           <Tabs
             value={value}
             onChange={handleChange}
-            variant={scrollableTabs ? "scrollable" : "standard"}
+            variant={scrollableTabs ? "scrollable" : "fullWidth"}
             scrollButtons="off"
             centered={!scrollableTabs}
-            indicatorColor="primary"
-            textColor="primary"
+            // indicatorColor="transparent"
+            textColor="secondary"
             aria-label="blog navigation items"
+            classes={{ indicator: classes.indicator }}
           >
-            <Tab aria-label="Home" label="Home" {...a11yProps(0)} />
-            <Tab aria-label="Mom Life" label="Mom Life" {...a11yProps(1)} />
-            <Tab aria-label="Adventures" label="Adventures" {...a11yProps(2)} />
-            <Tab aria-label="Books" label="Books" {...a11yProps(3)} />
-            <Tab aria-label="Crafts" label="Crafts" {...a11yProps(4)} />
+            <Tab
+              aria-label="Home"
+              label="Home"
+              {...a11yProps(0)}
+              className={classes.divider}
+            />
+            {/* <Divider
+              className={classes.divider}
+              orientation="vertical"
+              flexItem
+            /> */}
+            <Tab
+              aria-label="Mom Life"
+              label="Mom Life"
+              {...a11yProps(1)}
+              className={classes.divider}
+            />
+            {/* <Divider
+              className={classes.divider}
+              orientation="vertical"
+              flexItem
+            /> */}
+            <Tab
+              aria-label="Adventures"
+              label="Adventures"
+              {...a11yProps(2)}
+              className={classes.divider}
+            />
+            {/* <Divider
+              className={classes.divider}
+              orientation="vertical"
+              flexItem
+            /> */}
+            <Tab
+              aria-label="Books"
+              label="Books"
+              {...a11yProps(3)}
+              className={classes.divider}
+            />
+            {/* <Divider
+              className={classes.divider}
+              orientation="vertical"
+              flexItem
+            /> */}
+            <Tab
+              aria-label="Crafts"
+              label="Crafts"
+              {...a11yProps(4)}
+              className={classes.divider}
+            />
+            {/* <Divider
+              className={classes.divider}
+              orientation="vertical"
+              flexItem
+            /> */}
             <Tab aria-label="About" label="About" {...a11yProps(5)} />
           </Tabs>
         </AppBar>

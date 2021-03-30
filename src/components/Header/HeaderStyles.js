@@ -4,7 +4,24 @@ const headerStyles = makeStyles((theme) => ({
   main: {
     paddingTop: theme.spacing(3),
   },
-
+  header: {
+    textAlign: "center",
+    display: "flex",
+    flexFlow: "row nowrap",
+    alignItems: "center",
+    justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "large",
+    },
+  },
+  headerLeft: {
+    marginRight: "10px",
+    color: "#2C3C69",
+  },
+  headerRight: {
+    marginLeft: "10px",
+    color: "#2C3C69",
+  },
   svg: {
     position: "relative",
     [theme.breakpoints.down("sm")]: {
@@ -12,9 +29,17 @@ const headerStyles = makeStyles((theme) => ({
       width: "200px",
     },
   },
-  headerText: {
+  headerSubText: {
+    display: "flex",
+    color: "#2C3C69",
+    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "center",
     padding: theme.spacing(3),
     fontStyle: "italic",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "medium",
+    },
   },
 }));
 

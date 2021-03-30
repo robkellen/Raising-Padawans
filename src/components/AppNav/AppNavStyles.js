@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { pink } from "@material-ui/core/colors";
 
 const drawerWidth = 240;
 
@@ -32,10 +31,11 @@ const appNavStyles = makeStyles((theme) => ({
     },
   },
   iconButton: {
-    color: pink[300],
+    color: "#DD9BAB",
+    fontWeight: "900",
   },
   aTag: {
-    color: pink[300],
+    color: "#DD9BAB",
     textDecoration: "none",
   },
   hide: {
@@ -48,12 +48,14 @@ const appNavStyles = makeStyles((theme) => ({
   },
   drawerOpen: {
     width: drawerWidth,
+    backgroundColor: "rgba(244, 242, 255, 0.3)",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
+    backgroundColor: "rgba(244, 242, 255, 0.3)",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

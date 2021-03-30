@@ -43,7 +43,7 @@ function AppNav() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        style={{ backgroundColor: "pink" }}
+        style={{ backgroundColor: "#DD9BAB" }}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -113,12 +113,19 @@ function AppNav() {
               <ListItemText>RP on Instagram</ListItemText>
             </ListItem>
           </a>
-          <ListItem button>
-            <ListItemIcon>
-              <FacebookIcon className={classes.iconButton} />
-            </ListItemIcon>
-            <ListItemText>RP on Facebook</ListItemText>
-          </ListItem>
+          <a
+            href="https://www.facebook.com/raisingpadawans-105607621570004"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={classes.aTag}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <FacebookIcon className={classes.iconButton} />
+              </ListItemIcon>
+              <ListItemText>RP on Facebook</ListItemText>
+            </ListItem>
+          </a>
           <a
             href="mailto:rob.h.kellen@gmail.com"
             target="_blank"
