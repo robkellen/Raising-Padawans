@@ -6,9 +6,6 @@ const blogNavStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: "rgba(244, 242, 255, 0.3)",
   },
-  indicator: {
-    display: "none",
-  },
   tabs: {
     "& .MuiTab-root": {
       padding: "6px 0px",

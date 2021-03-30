@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
+// import Box from "@material-ui/core/Box";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import LinkTab from "../LinkTab/LinkTab";
+import ContentPanel from "../ContentPanel/ContentPanel";
 import HomeTabContent from "../BlogContent/HomeTabContent/HomeTabContent";
 import MomLifeTabContent from "../BlogContent/MomLifeTabContent/MomLifeTabContent";
 import AdventuresTabContent from "../BlogContent/AdventuresTabContent/AdventuresTabContent";
@@ -13,27 +14,7 @@ import BooksTabContent from "../BlogContent/BooksTabContent/BooksTabContent";
 import CraftsTabContent from "../BlogContent/CraftsTabContent/CraftsTabContent";
 import blogNavStyles from "./BlogNavStyles";
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-prevent-tabpanel-${index}`}
-      aria-labelledby={`scrollable-prevent-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box>
-          <React.Fragment>{children}</React.Fragment>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
+ContentPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
@@ -77,82 +58,58 @@ function BlogNav() {
             aria-label="blog navigation items"
             classes={{ indicator: classes.indicator }}
           >
-            <Tab
+            <LinkTab
               aria-label="Home"
               label="Home"
               {...a11yProps(0)}
               className={classes.divider}
             />
-            {/* <Divider
-              className={classes.divider}
-              orientation="vertical"
-              flexItem
-            /> */}
-            <Tab
+            <LinkTab
               aria-label="Mom Life"
               label="Mom Life"
               {...a11yProps(1)}
               className={classes.divider}
             />
-            {/* <Divider
-              className={classes.divider}
-              orientation="vertical"
-              flexItem
-            /> */}
-            <Tab
+            <LinkTab
               aria-label="Adventures"
               label="Adventures"
               {...a11yProps(2)}
               className={classes.divider}
             />
-            {/* <Divider
-              className={classes.divider}
-              orientation="vertical"
-              flexItem
-            /> */}
-            <Tab
+            <LinkTab
               aria-label="Books"
               label="Books"
               {...a11yProps(3)}
               className={classes.divider}
+              href="/books"
             />
-            {/* <Divider
-              className={classes.divider}
-              orientation="vertical"
-              flexItem
-            /> */}
-            <Tab
+            <LinkTab
               aria-label="Crafts"
               label="Crafts"
               {...a11yProps(4)}
               className={classes.divider}
             />
-            {/* <Divider
-              className={classes.divider}
-              orientation="vertical"
-              flexItem
-            /> */}
-            <Tab aria-label="About" label="About" {...a11yProps(5)} />
+            <LinkTab aria-label="About" label="About" {...a11yProps(5)} />
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0}>
+        <ContentPanel value={value} index={0}>
           <HomeTabContent />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
+        </ContentPanel>
+        <ContentPanel value={value} index={1}>
           <MomLifeTabContent />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
+        </ContentPanel>
+        <ContentPanel value={value} index={2}>
           <AdventuresTabContent />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
+        </ContentPanel>
+        <ContentPanel value={value} index={3}>
           <BooksTabContent />
-        </TabPanel>
-        <TabPanel value={value} index={4}>
+        </ContentPanel>
+        <ContentPanel value={value} index={4}>
           <CraftsTabContent />
-        </TabPanel>
-        <TabPanel value={value} index={5}>
+        </ContentPanel>
+        <ContentPanel value={value} index={5}>
           {/* About */}
-        </TabPanel>
+        </ContentPanel>
       </div>
     </React.Fragment>
   );
