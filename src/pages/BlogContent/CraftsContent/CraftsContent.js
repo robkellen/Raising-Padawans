@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "graphql-request";
 import Grid from "@material-ui/core/Grid";
-import HeroImage from "../../HeroImage/HeroImage";
+import HeroImage from "../../../components/HeroImage/HeroImage";
 import Container from "@material-ui/core/Container";
 
-function AdventuresTabContent() {
+function CraftsContent() {
   //setting state of posts
   const [posts, setPosts] = useState([]);
 
@@ -15,7 +15,7 @@ function AdventuresTabContent() {
         "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
         `
       { 
-        posts (where: {adventureCategory: true}){
+        posts (where: {craftsCategory: true}){
           id
           title
           content {
@@ -45,7 +45,7 @@ function AdventuresTabContent() {
           <HeroImage />
         </Grid>
 
-        <Container>
+        <Container >
           {posts.map(({ title, id, image, content, slug }) => (
             <article key={id}>
               <h2>{title}</h2>
@@ -62,4 +62,4 @@ function AdventuresTabContent() {
   );
 }
 
-export default AdventuresTabContent;
+export default CraftsContent;

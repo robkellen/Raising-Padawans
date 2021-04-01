@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "graphql-request";
 import Grid from "@material-ui/core/Grid";
-import HeroImage from "../../HeroImage/HeroImage";
+import HeroImage from "../../../components/HeroImage/HeroImage";
 import Container from "@material-ui/core/Container";
 
-function BooksTabContent() {
+function AdventuresContent() {
   //setting state of posts
   const [posts, setPosts] = useState([]);
 
@@ -15,7 +15,7 @@ function BooksTabContent() {
         "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
         `
       { 
-        posts (where: {booksCategory: true}){
+        posts (where: {adventureCategory: true}){
           id
           title
           content {
@@ -62,4 +62,4 @@ function BooksTabContent() {
   );
 }
 
-export default BooksTabContent;
+export default AdventuresContent;

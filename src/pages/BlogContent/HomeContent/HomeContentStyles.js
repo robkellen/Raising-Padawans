@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const homeTabContentStyles = makeStyles(() => ({
+const homeContentStyles = makeStyles(() => ({
   postsContainer: {
     order: 2,
   },
 }));
 
-export default homeTabContentStyles;
+export default homeContentStyles;

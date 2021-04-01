@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { request } from "graphql-request";
 import Grid from "@material-ui/core/Grid";
-import HeroImage from "../../HeroImage/HeroImage";
+import HeroImage from "../../../components/HeroImage/HeroImage";
 import Container from "@material-ui/core/Container";
+import homeContentStyles from "./HomeContentStyles";
 
-function CraftsTabContent() {
+function HomeContent() {
+  //defining classes and theme
+  const classes = homeContentStyles();
+
   //setting state of posts
   const [posts, setPosts] = useState([]);
 
@@ -15,7 +19,7 @@ function CraftsTabContent() {
         "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
         `
       { 
-        posts (where: {craftsCategory: true}){
+        posts {
           id
           title
           content {
@@ -45,13 +49,13 @@ function CraftsTabContent() {
           <HeroImage />
         </Grid>
 
-        <Container >
+        <Container className={classes.postsContainer}>
           {posts.map(({ title, id, image, content, slug }) => (
             <article key={id}>
               <h2>{title}</h2>
               {/* <img src={image.url} alt="blog post" /> */}
               <p dangerouslySetInnerHTML={{ __html: content.html }} />
-              <Link to={`/post/${slug}`}>
+              <Link to={`/post/:${slug}`}>
                 <button className="btn">{title}</button>
               </Link>
             </article>
@@ -62,4 +66,4 @@ function CraftsTabContent() {
   );
 }
 
-export default CraftsTabContent;
+export default HomeContent;
