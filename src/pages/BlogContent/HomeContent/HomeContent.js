@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { request } from "graphql-request";
 import Grid from "@material-ui/core/Grid";
 import HeroImage from "../../../components/HeroImage/HeroImage";
+import PostCard from "../../../components/PostCard/PostCard";
 import Container from "@material-ui/core/Container";
 import homeContentStyles from "./HomeContentStyles";
 
@@ -42,6 +43,8 @@ function HomeContent() {
     fetchPosts();
   }, []);
 
+  console.log(posts);
+
   return (
     <React.Fragment>
       <Grid>
@@ -50,16 +53,25 @@ function HomeContent() {
         </Grid>
 
         <Container className={classes.postsContainer}>
-          {posts.map(({ title, id, image, content, slug }) => (
-            <article key={id}>
-              <h2>{title}</h2>
-              {/* <img src={image.url} alt="blog post" /> */}
-              <p dangerouslySetInnerHTML={{ __html: content.html }} />
-              <Link to={`/post/:${slug}`}>
-                <button className="btn">{title}</button>
-              </Link>
-            </article>
-          ))}
+          <Grid container align="center" spacing={1} className={classes.postsGrid}>
+            {posts.map((post) => (
+              <Grid item xs={12} sm={6} md={4} key={post.id}>
+                <PostCard
+                  id={post.id}
+                  image={post.image.url}
+                  title={post.title}
+                />
+                {/* <article key={post.id}>
+                  <h2>{post.title}</h2>
+                  <img src={post.image.url} alt="blog post" />
+                  <p dangerouslySetInnerHTML={{ __html: post.content.html }} />
+                  <Link to={`/post/:${post.slug}`}>
+                    <button className="btn">{post.title}</button>
+                  </Link>
+                </article> */}
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Grid>
     </React.Fragment>

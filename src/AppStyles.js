@@ -25,6 +25,7 @@ const appStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(0),
+    backgroundColor: "rgba(221, 155, 171, 0.3)",
   },
   postsContainer: {
     order: 2,
@@ -32,7 +33,6 @@ const appStyles = makeStyles((theme) => ({
   navRoot: {
     flexGrow: 1,
     width: "100%",
-    // backgroundColor: "rgba(244, 242, 255, 0.3)",
   },
   tabs: {
     "& .MuiTab-root": {
