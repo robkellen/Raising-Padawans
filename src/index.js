@@ -3,20 +3,24 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Router } from "react-router";
-import { createBrowserHistory } from "history";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 
-
-
-const history = createBrowserHistory();
-
+const routes = (
+  <Router>
+    <Switch>
+      <Route path="/blog" component={App} />
+      <Redirect from="/" to="/blog" />
+    </Switch>
+  </Router>
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router history={history}>
-      <App />
-    </Router>
-  </React.StrictMode>,
+  <React.StrictMode>{routes}</React.StrictMode>,
   document.getElementById("root")
 );
 

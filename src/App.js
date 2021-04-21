@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+} from "react-router-dom";
 import appStyles from "./AppStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
@@ -16,7 +22,7 @@ import HomeContent from "./pages/BlogContent/HomeContent/HomeContent";
 import AdventuresContent from "./pages/BlogContent/AdventuresContent/AdventuresContent";
 import BooksContent from "./pages/BlogContent/BooksContent/BooksContent";
 import CraftsContent from "./pages/BlogContent/CraftsContent/CraftsContent";
-// import PostDetail from "./pages/PostDetail";
+import PostDetail from "./pages/PostDetail";
 
 function App() {
   //defining classes and theme
@@ -26,15 +32,10 @@ function App() {
   const theme = useTheme();
   const scrollableTabs = useMediaQuery(theme.breakpoints.down("sm"));
 
-  //define routes for BlogNav
-  const routes = [
-    "/",
-    "/mom-life",
-    "/adventures",
-    "/books",
-    "/crafts",
-    "/about",
-  ];
+  //The `path` lets us build <Route> paths that are
+  // relative to the parent route. The `url` lets
+  // us build relative links.
+  const {path, url} = useRouteMatch();
 
   return (
     <Router>
@@ -51,16 +52,15 @@ function App() {
 
                 <div className={classes.navRoot}>
                   <Route
-                    path="/"
-                    render={(history) => (
+                    path={path}
+                    render={() => (
                       <AppBar
                         position="static"
                         color="transparent"
                         className={classes.tabs}
                       >
                         <Tabs
-                          value={history.location.pathname}
-                          // onChange={handleChange}
+                          value={false}
                           variant={scrollableTabs ? "scrollable" : "fullWidth"}
                           scrollButtons="off"
                           centered={!scrollableTabs}
@@ -70,59 +70,60 @@ function App() {
                         >
                           <Tab
                             component={Link}
-                            value={routes[0]}
+                            // value={routes[0]}
                             label="Home"
                             className={classes.divider}
-                            to={routes[0]}
+                            to={url}
                           />
                           <Tab
                             component={Link}
-                            value={routes[1]}
+                            // value={routes[1]}
                             label="Mom Life"
                             className={classes.divider}
-                            to={routes[1]}
+                            to={`${url}/mom-life`}
                           />
                           <Tab
                             component={Link}
-                            value={routes[2]}
+                            // value={routes[2]}
                             label="Adventures"
                             className={classes.divider}
-                            to={routes[2]}
+                            to={`${url}/adventures`}
                           />
                           <Tab
                             component={Link}
-                            value={routes[3]}
+                            // value={routes[3]}
                             aria-label="Books"
                             label="Books"
                             className={classes.divider}
-                            to={routes[3]}
+                            to={`${url}/books`}
                           />
                           <Tab
                             component={Link}
-                            value={routes[4]}
+                            // value={routes[4]}
                             aria-label="Crafts"
                             label="Crafts"
                             className={classes.divider}
-                            to={routes[4]}
+                            to={`${url}/crafts`}
                           />
                           <Tab
                             component={Link}
-                            value={routes[5]}
+                            // value={routes[5]}
                             aria-label="About"
                             label="About"
-                            to={routes[5]}
+                            to={`${url}/about`}
                           />
                         </Tabs>
                       </AppBar>
                     )}
                   />
                   <Switch>
-                    <Route exact path="/" component={HomeContent} />
-                    <Route path="/mom-life" component={MomLifeContent} />
-                    <Route path="/adventures" component={AdventuresContent} />
-                    <Route path="/books" component={BooksContent} />
-                    <Route path="/crafts" component={CraftsContent} />
-                    <Route path="/about" component={HomeContent} />
+                    <Route exact path={path} component={HomeContent} />
+                    <Route path={`${path}/mom-life`} component={MomLifeContent} />
+                    <Route path={`${path}/adventures`} component={AdventuresContent} />
+                    <Route path={`${path}/books`} component={BooksContent} />
+                    <Route path={`${path}/crafts`}component={CraftsContent} />
+                    <Route path={`${path}/about`} component={HomeContent} />
+                    <Route path={`${path}/:slug`} component={PostDetail} />
                   </Switch>
                 </div>
               </Grid>
