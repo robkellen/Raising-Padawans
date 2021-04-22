@@ -2,17 +2,22 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const postCardStyles = makeStyles(() => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 400,
     height: 400,
     flexGrow: 1,
     border: "10px solid white",
+  },
+  paper: {
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
   },
   media: {
     height: 240,
     objectFit: "cover",
   },
   cardLink: {
-    textDecoration: 0,
+    color: "black",
+    textDecoration: "none",
   },
 }));
 

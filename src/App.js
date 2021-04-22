@@ -118,12 +118,16 @@ function App() {
                   />
                   <Switch>
                     <Route exact path={path} component={HomeContent} />
-                    <Route path={`${path}/mom-life`} component={MomLifeContent} />
-                    <Route path={`${path}/adventures`} component={AdventuresContent} />
-                    <Route path={`${path}/books`} component={BooksContent} />
-                    <Route path={`${path}/crafts`}component={CraftsContent} />
-                    <Route path={`${path}/about`} component={HomeContent} />
-                    <Route path={`${path}/:slug`} component={PostDetail} />
+                    <Route exact path={`${path}/mom-life`} component={MomLifeContent} />
+                    <Route exact path={`${path}/adventures`} component={AdventuresContent} />
+                    <Route exact path={`${path}/books`} component={BooksContent} />
+                    <Route exact path={`${path}/crafts`}component={CraftsContent} />
+                    <Route exact path={`${path}/about`} component={HomeContent} />
+                    <Route exact path={`${path}/:slug`} component={PostDetail} />
+                    <Route exact path={`${path}/mom-life/:slug`} component={PostDetail} />
+                    <Route exact path={`${path}/adventures/:slug`} component={PostDetail} />
+                    <Route exact path={`${path}/books/:slug`} component={PostDetail} />
+                    <Route exact path={`${path}/crafts/:slug`} component={PostDetail} />
                   </Switch>
                 </div>
               </Grid>

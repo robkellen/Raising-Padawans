@@ -53,6 +53,7 @@ function AdventuresContent() {
           <HeroImage />
         </Grid>
         <Container className={classes.postsContainer}>
+          
           <Grid
             container
             align="center"

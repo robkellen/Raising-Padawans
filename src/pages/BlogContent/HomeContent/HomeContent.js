@@ -10,13 +10,16 @@ function HomeContent() {
   //defining classes and theme
   const classes = blogContentStyles();
 
+  //import graphCMS API key from .env
+  const GRAPHCMS_KEY = process.env.REACT_APP_GRAPHCMS_KEY;
+
   //setting state of posts
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const { posts } = await request(
-        "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
+        GRAPHCMS_KEY,
         `
       { 
         posts {
@@ -46,6 +49,8 @@ function HomeContent() {
     fetchPosts();
   }, []);
 
+  console.log(posts)
+
   return (
     <React.Fragment>
       <Grid>
@@ -53,6 +58,7 @@ function HomeContent() {
           <HeroImage />
         </Grid>
         <Container className={classes.postsContainer}>
+          
           <Grid
             container
             align="center"

@@ -41,7 +41,8 @@ function PostDetail() {
     };
 
     fetchPost();
-  }, []);
+    
+  }, [slug]);
 
   return (
     <div>
