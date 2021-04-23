@@ -18,7 +18,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppNav from "./components/AppNav/AppNav";
 import Header from "./components/Header/Header";
 import MomLifeContent from "./pages/BlogContent/MomLifeContent/MomLifeContent";
-import HomeContent from "./pages/BlogContent/HomeContent/HomeContent";
+import HomeContent from "./pages/BlogContent/BlogContent";
 import AdventuresContent from "./pages/BlogContent/AdventuresContent/AdventuresContent";
 import BooksContent from "./pages/BlogContent/BooksContent/BooksContent";
 import CraftsContent from "./pages/BlogContent/CraftsContent/CraftsContent";
@@ -35,7 +35,7 @@ function App() {
   //The `path` lets us build <Route> paths that are
   // relative to the parent route. The `url` lets
   // us build relative links.
-  const {path, url} = useRouteMatch();
+  const { path, url } = useRouteMatch();
 
   return (
     <Router>
@@ -118,16 +118,56 @@ function App() {
                   />
                   <Switch>
                     <Route exact path={path} component={HomeContent} />
-                    <Route exact path={`${path}/mom-life`} component={MomLifeContent} />
-                    <Route exact path={`${path}/adventures`} component={AdventuresContent} />
-                    <Route exact path={`${path}/books`} component={BooksContent} />
-                    <Route exact path={`${path}/crafts`}component={CraftsContent} />
-                    <Route exact path={`${path}/about`} component={HomeContent} />
-                    <Route exact path={`${path}/:slug`} component={PostDetail} />
-                    <Route exact path={`${path}/mom-life/:slug`} component={PostDetail} />
-                    <Route exact path={`${path}/adventures/:slug`} component={PostDetail} />
-                    <Route exact path={`${path}/books/:slug`} component={PostDetail} />
-                    <Route exact path={`${path}/crafts/:slug`} component={PostDetail} />
+                    <Route
+                      exact
+                      path={`${path}/mom-life`}
+                      component={HomeContent}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/adventures`}
+                      component={HomeContent}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/books`}
+                      component={HomeContent}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/crafts`}
+                      component={HomeContent}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/about`}
+                      component={HomeContent}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/:slug`}
+                      component={PostDetail}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/mom-life/:slug`}
+                      component={PostDetail}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/adventures/:slug`}
+                      component={PostDetail}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/books/:slug`}
+                      component={PostDetail}
+                    />
+                    <Route
+                      exact
+                      path={`${path}/crafts/:slug`}
+                      component={PostDetail}
+                    />
                   </Switch>
                 </div>
               </Grid>
