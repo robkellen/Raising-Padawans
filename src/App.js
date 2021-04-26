@@ -17,11 +17,7 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppNav from "./components/AppNav/AppNav";
 import Header from "./components/Header/Header";
-import MomLifeContent from "./pages/BlogContent/MomLifeContent/MomLifeContent";
-import HomeContent from "./pages/BlogContent/BlogContent";
-import AdventuresContent from "./pages/BlogContent/AdventuresContent/AdventuresContent";
-import BooksContent from "./pages/BlogContent/BooksContent/BooksContent";
-import CraftsContent from "./pages/BlogContent/CraftsContent/CraftsContent";
+import BlogContent from "./pages/BlogContent/BlogContent";
 import PostDetail from "./pages/PostDetail";
 
 function App() {
@@ -117,31 +113,31 @@ function App() {
                     )}
                   />
                   <Switch>
-                    <Route exact path={path} component={HomeContent} />
+                    <Route exact path={path} component={BlogContent} />
                     <Route
                       exact
                       path={`${path}/mom-life`}
-                      component={HomeContent}
+                      component={BlogContent}
                     />
                     <Route
                       exact
                       path={`${path}/adventures`}
-                      component={HomeContent}
+                      component={BlogContent}
                     />
                     <Route
                       exact
                       path={`${path}/books`}
-                      component={HomeContent}
+                      component={BlogContent}
                     />
                     <Route
                       exact
                       path={`${path}/crafts`}
-                      component={HomeContent}
+                      component={BlogContent}
                     />
                     <Route
                       exact
                       path={`${path}/about`}
-                      component={HomeContent}
+                      component={BlogContent}
                     />
                     <Route
                       exact

@@ -93,7 +93,7 @@ function AppNav() {
             rel="noopener noreferrer"
             className={classes.aTag}
           >
-            <ListItem button>
+            <ListItem button className={classes.liButton}>
               <ListItemIcon>
                 <PinterestIcon className={classes.iconButton} />
               </ListItemIcon>
@@ -106,7 +106,7 @@ function AppNav() {
             rel="noopener noreferrer"
             className={classes.aTag}
           >
-            <ListItem button>
+            <ListItem button className={classes.liButton}>
               <ListItemIcon>
                 <InstagramIcon className={classes.iconButton} />
               </ListItemIcon>
@@ -119,7 +119,7 @@ function AppNav() {
             rel="noopener noreferrer"
             className={classes.aTag}
           >
-            <ListItem button>
+            <ListItem button className={classes.liButton}>
               <ListItemIcon>
                 <FacebookIcon className={classes.iconButton} />
               </ListItemIcon>
@@ -132,7 +132,7 @@ function AppNav() {
             rel="noopener noreferrer"
             className={classes.aTag}
           >
-            <ListItem button>
+            <ListItem button variant="raised" className={classes.liButton}>
               <ListItemIcon>
                 <MailIcon className={classes.iconButton} />
               </ListItemIcon>

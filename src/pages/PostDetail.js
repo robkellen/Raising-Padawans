@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import request from "graphql-request";
 import { useParams } from "react-router-dom";
+import Container from "@material-ui/core/Container";
 
 function PostDetail() {
   const [post, setPost] = useState({
@@ -41,7 +42,6 @@ function PostDetail() {
     };
 
     fetchPost();
-    
   }, [slug]);
 
   return (
@@ -50,9 +50,11 @@ function PostDetail() {
         "Loading..."
       ) : (
         <React.Fragment>
-          <h1>{post.title}</h1>
-          <img src={post.image.url} alt="test" />
-          <p dangerouslySetInnerHTML={{ __html: post.content.html }} />
+          <Container>
+            <h1>{post.title}</h1>
+            <img src={post.image.url} alt="test" />
+            <p dangerouslySetInnerHTML={{ __html: post.content.html }} />
+          </Container>
         </React.Fragment>
       )}
     </div>

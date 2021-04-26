@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import RPLogo from "../../utils/images/RPLogo.svg";
 import headerStyles from "./HeaderStyles";
+import "./Header.css"
 
 function Header() {
   //define style
@@ -25,7 +26,7 @@ function Header() {
         </Grid>
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item>
-            <Typography variant="h4" className={classes.headerSubText}>
+            <Typography variant="h4" className={classes.headerSubText} id="subtext">
               A blog for chic geeks everywhere.
             </Typography>
           </Grid>

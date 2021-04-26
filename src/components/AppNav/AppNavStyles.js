@@ -27,7 +27,14 @@ const appNavStyles = makeStyles((theme) => ({
   iconList: {
     marginTop: 30,
     [theme.breakpoints.up("sm")]: {
-      paddingLeft: 8,
+      marginLeft: 8,
+    },
+  },
+  liButton: {
+    backgroundColor: "transparent",
+    "&:hover": {
+      backgroundColor: "transparent",
+      transform: "scale3d(1.1, 1.1, 0.5)",
     },
   },
   iconButton: {

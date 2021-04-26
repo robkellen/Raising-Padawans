@@ -9,7 +9,7 @@ const postCardStyles = makeStyles(() => ({
   },
   paper: {
     transition: "transform 0.15s ease-in-out",
-    "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
+    "&:hover": { transform: "scale3d(1.03, 1.03, 0.5)" },
   },
   media: {
     height: 240,

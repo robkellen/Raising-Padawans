@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import HeroImage from "../../components/HeroImage/HeroImage";
 import PostCard from "../../components/PostCard/PostCard";
@@ -54,45 +53,46 @@ function HomeContent() {
     };
 
     fetchPosts();
+    //eslint-disable-next-line
   }, [url]);
 
   console.log(posts);
 
   return (
     <React.Fragment>
-      {loading ? (
-        <div>
-          <Backdrop className={classes.backdrop} open={loading}>
-            <CircularProgress color="secondary" />
-          </Backdrop>
-        </div>
-      ) : (
-        <Grid>
-          <Grid item xs={12}>
-            <HeroImage />
-          </Grid>
-          <Container className={classes.postsContainer}>
-            <Grid
-              container
-              justify="center"
-              spacing={3}
-              className={classes.postsGrid}
-            >
-              {posts.map((post) => (
-                <Grid item xs={12} sm={6} md={4} key={post.id}>
-                  <PostCard
-                    id={post.id}
-                    image={post.image.url}
-                    title={post.title}
-                    slug={post.slug}
-                    createdAt={post.createdAt}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
+      <Grid>
+        <Grid item xs={12}>
+          <HeroImage />
         </Grid>
-      )}
+        <Container className={classes.postsContainer}>
+          <Grid
+            container
+            justify="center"
+            spacing={3}
+            className={classes.postsGrid}
+          >
+            {loading ? (
+              <Grid item className={classes.spinner}>
+                <CircularProgress color="secondary" />
+              </Grid>
+            ) : (
+              <>
+                {posts.map((post) => (
+                  <Grid item xs={12} sm={6} md={4} key={post.id}>
+                    <PostCard
+                      id={post.id}
+                      image={post.image.url}
+                      title={post.title}
+                      slug={post.slug}
+                      createdAt={post.createdAt}
+                    />
+                  </Grid>
+                ))}
+              </>
+            )}
+          </Grid>
+        </Container>
+      </Grid>
     </React.Fragment>
   );
 }

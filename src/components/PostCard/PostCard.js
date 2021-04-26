@@ -20,13 +20,13 @@ function PostCard(props) {
   });
 
   //build on url to create link to PostDetail page
-  let { url, path } = useRouteMatch();
+  let {  path } = useRouteMatch();
 
   return (
     <React.Fragment>
       <Paper className={classes.paper} elevation={1}>
-        <Card className={classes.root} square>
-          <CardActionArea>
+        <CardActionArea className={classes.cardAction}>
+          <Card className={classes.root} square>
             <Link className={classes.cardLink} to={`${path}/${props.slug}`}>
               <CardMedia
                 className={classes.media}
@@ -42,8 +42,8 @@ function PostCard(props) {
                 </Typography>
               </CardContent>
             </Link>
-          </CardActionArea>
-        </Card>
+          </Card>
+        </CardActionArea>
       </Paper>
     </React.Fragment>
   );
