@@ -24,6 +24,7 @@ const headerStyles = makeStyles((theme) => ({
   },
   svg: {
     position: "relative",
+    filter: "drop-shadow(0px 0px 3px #116466)",
     [theme.breakpoints.down("sm")]: {
       height: "200px",
       width: "200px",

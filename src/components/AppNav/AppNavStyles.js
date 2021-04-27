@@ -24,6 +24,10 @@ const appNavStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: 36,
   },
+  rpTitleSvg: {
+    fill: "red",
+    
+  },
   iconList: {
     marginTop: 30,
     [theme.breakpoints.up("sm")]: {
