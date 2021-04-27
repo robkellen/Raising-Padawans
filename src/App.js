@@ -18,7 +18,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import AppNav from "./components/AppNav/AppNav";
 import Header from "./components/Header/Header";
 import BlogContent from "./pages/BlogContent/BlogContent";
-import PostDetail from "./pages/PostDetail";
+import PostDetail from "./pages/PostDetail/PostDetail";
 
 function App() {
   //defining classes and theme
@@ -52,8 +52,9 @@ function App() {
                     render={() => (
                       <AppBar
                         position="static"
-                        color="transparent"
+                        // color="transparent"
                         className={classes.tabs}
+                        elevation={0}
                       >
                         <Tabs
                           value={false}

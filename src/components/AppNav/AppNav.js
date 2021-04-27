@@ -43,6 +43,7 @@ function AppNav() {
       <CssBaseline />
       <AppBar
         position="fixed"
+        elevation={0}
         style={{ backgroundColor: "#DD9BAB" }}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,

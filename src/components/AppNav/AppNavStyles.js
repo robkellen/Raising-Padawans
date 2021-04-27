@@ -77,7 +77,7 @@ const appNavStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(1, 0, 0, 0),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },

@@ -14,11 +14,7 @@ const allPostsQuery = gql`
       createdAt
       image {
         id
-        url(
-          transformation: {
-            image: { resize: { height: 240, width: 345, fit: max } }
-          }
-        )
+        url
       }
       slug
     }

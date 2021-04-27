@@ -35,8 +35,15 @@ const appStyles = makeStyles((theme) => ({
     width: "100%",
   },
   tabs: {
+    backgroundColor: "white !important",
+    borderTop: "thin solid gray",
+    borderBottom: "thin solid gray",
     "& .MuiTab-root": {
       padding: "6px 0px",
+      "&:hover": {
+        color: "#DD9BAB",
+        fontWeight: "bolder",
+      },
     },
   },
   indicator: {
@@ -44,7 +51,7 @@ const appStyles = makeStyles((theme) => ({
   },
   divider: {
     "& span.MuiTab-wrapper": {
-      borderRight: "4px solid rgba(0, 0, 0, 0.54)",
+      borderRight: "3px solid rgba(0, 0, 0, 0.54)",
       [theme.breakpoints.down("md")]: {
         // padding: "2px 5px 2px 0px",
         borderRight: "2px solid rgba(0, 0, 0, 0.54)",

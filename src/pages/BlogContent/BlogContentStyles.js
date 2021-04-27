@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const blogContentStyles = makeStyles((theme) => ({
   postsContainer: {
-    // justify: "center",
     height: "100"
   },
   backdrop: {
