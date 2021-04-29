@@ -8,6 +8,10 @@ const blogContentStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: "#fff",
   },
+  paginator: {
+    justifyContent: "center",
+    padding: "10px"
+  },
 }));
 
 export default blogContentStyles;

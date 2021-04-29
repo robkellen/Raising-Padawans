@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const headerStyles = makeStyles((theme) => ({
   main: {
     paddingTop: theme.spacing(3),
+    backgroundColor: "#f7f7f7",
   },
   header: {
     textAlign: "center",
@@ -24,7 +25,7 @@ const headerStyles = makeStyles((theme) => ({
   },
   svg: {
     position: "relative",
-    filter: "drop-shadow(0px 0px 3px #116466)",
+    // filter: "drop-shadow(0px 0px 10px #116466)",
     [theme.breakpoints.down("sm")]: {
       height: "200px",
       width: "200px",

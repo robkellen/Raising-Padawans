@@ -61,34 +61,29 @@ function App() {
                           variant={scrollableTabs ? "scrollable" : "fullWidth"}
                           scrollButtons="off"
                           centered={!scrollableTabs}
-                          textColor="secondary"
                           aria-label="blog navigation items"
                           classes={{ indicator: classes.indicator }}
                         >
                           <Tab
                             component={Link}
-                            // value={routes[0]}
                             label="Home"
                             className={classes.divider}
                             to={url}
                           />
                           <Tab
                             component={Link}
-                            // value={routes[1]}
                             label="Mom Life"
                             className={classes.divider}
                             to={`${url}/mom-life`}
                           />
                           <Tab
                             component={Link}
-                            // value={routes[2]}
                             label="Adventures"
                             className={classes.divider}
                             to={`${url}/adventures`}
                           />
                           <Tab
                             component={Link}
-                            // value={routes[3]}
                             aria-label="Books"
                             label="Books"
                             className={classes.divider}
@@ -96,7 +91,6 @@ function App() {
                           />
                           <Tab
                             component={Link}
-                            // value={routes[4]}
                             aria-label="Crafts"
                             label="Crafts"
                             className={classes.divider}
@@ -104,7 +98,6 @@ function App() {
                           />
                           <Tab
                             component={Link}
-                            // value={routes[5]}
                             aria-label="About"
                             label="About"
                             to={`${url}/about`}

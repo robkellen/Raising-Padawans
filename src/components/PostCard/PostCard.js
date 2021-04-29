@@ -12,8 +12,11 @@ function PostCard(props) {
   //define styles
   const classes = postCardStyles();
 
+  //destructure properties needed for data utlized in this component
+  const {image, title, slug, createdAt} = props;
+
   //format timestamp into reader-friendly date
-  let publishDate = new Date(props.createdAt).toLocaleDateString("en-us", {
+  let publishDate = new Date(createdAt).toLocaleDateString("en-us", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -27,15 +30,15 @@ function PostCard(props) {
       <Paper className={classes.paper} elevation={1}>
         <CardActionArea className={classes.cardAction}>
           <Card className={classes.root} square>
-            <Link className={classes.cardLink} to={`${path}/${props.slug}`}>
+            <Link className={classes.cardLink} to={`${path}/${slug}`}>
               <CardMedia
                 className={classes.media}
-                image={props.image}
-                alt={props.title}
+                image={image}
+                alt={title}
               />
               <CardContent align="left">
                 <Typography gutterBottom variant="h5" component="h4">
-                  {props.title}
+                  {title}
                 </Typography>
                 <Typography gutterBottom variant="button" display="block">
                   {publishDate}

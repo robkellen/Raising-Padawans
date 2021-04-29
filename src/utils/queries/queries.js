@@ -1,7 +1,6 @@
 import { request, gql } from "graphql-request";
-
-//define graphCMS API key from .env
-const GRAPHCMS_KEY = process.env.REACT_APP_GRAPHCMS_KEY;
+//import graphCMS API key 
+import { graphcmsKey } from "../_graphcmsKey";
 
 const allPostsQuery = gql`
   {
@@ -94,21 +93,21 @@ const craftsPostQuery = gql`
 `;
 
 export function homeQuery() {
-  return request(GRAPHCMS_KEY, allPostsQuery);
+  return request(graphcmsKey, allPostsQuery);
 }
 
 export function momLifeQuery() {
-  return request(GRAPHCMS_KEY, momLifePostsQuery);
+  return request(graphcmsKey, momLifePostsQuery);
 }
 
 export function adventuresQuery() {
-  return request(GRAPHCMS_KEY, adventuresPostQuery);
+  return request(graphcmsKey, adventuresPostQuery);
 }
 
 export function booksQuery() {
-  return request(GRAPHCMS_KEY, booksPostQuery);
+  return request(graphcmsKey, booksPostQuery);
 }
 
 export function craftsQuery() {
-  return request(GRAPHCMS_KEY, craftsPostQuery);
+  return request(graphcmsKey, craftsPostQuery);
 }

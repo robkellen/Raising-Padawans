@@ -59,14 +59,15 @@ const appNavStyles = makeStyles((theme) => ({
   },
   drawerOpen: {
     width: drawerWidth,
-    backgroundColor: "rgba(244, 242, 255, 0.3)",
+    backgroundColor: "rgb(106,101,111)",
+    borderTop: "thin, solid, rgb(106,101,111)",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
-    backgroundColor: "rgba(244, 242, 255, 0.3)",
+    backgroundColor: "rgb(106,101,111)",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -84,6 +85,7 @@ const appNavStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 0, 0, 0),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
+    
   },
   content: {
     flexGrow: 1,
