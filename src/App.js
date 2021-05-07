@@ -68,33 +68,33 @@ function App() {
                             component={Link}
                             label="Home"
                             className={classes.divider}
-                            to={url}
+                            to={`${url}?page=1`}
                           />
                           <Tab
                             component={Link}
                             label="Mom Life"
                             className={classes.divider}
-                            to={`${url}/mom-life`}
+                            to={`${url}/mom-life?page=1`}
                           />
                           <Tab
                             component={Link}
                             label="Adventures"
                             className={classes.divider}
-                            to={`${url}/adventures`}
+                            to={`${url}/adventures?page=1`}
                           />
                           <Tab
                             component={Link}
                             aria-label="Books"
                             label="Books"
                             className={classes.divider}
-                            to={`${url}/books`}
+                            to={`${url}/books?page=1`}
                           />
                           <Tab
                             component={Link}
                             aria-label="Crafts"
                             label="Crafts"
                             className={classes.divider}
-                            to={`${url}/crafts`}
+                            to={`${url}/crafts?page=1`}
                           />
                           <Tab
                             component={Link}
@@ -107,27 +107,13 @@ function App() {
                     )}
                   />
                   <Switch>
-                    <Route exact path={path} component={BlogContent} />
+                    <Route path={`${path}/mom-life`} component={BlogContent} />
                     <Route
-                      exact
-                      path={`${path}/mom-life`}
-                      component={BlogContent}
-                    />
-                    <Route
-                      exact
                       path={`${path}/adventures`}
                       component={BlogContent}
                     />
-                    <Route
-                      exact
-                      path={`${path}/books`}
-                      component={BlogContent}
-                    />
-                    <Route
-                      exact
-                      path={`${path}/crafts`}
-                      component={BlogContent}
-                    />
+                    <Route path={`${path}/books`} component={BlogContent} />
+                    <Route path={`${path}/crafts`} component={BlogContent} />
                     <Route
                       exact
                       path={`${path}/about`}
@@ -138,9 +124,10 @@ function App() {
                       path={`${path}/:slug`}
                       component={PostDetail}
                     />
-                    <Route
+                    <Route exact path={path} component={BlogContent} />
+                    {/* <Route
                       exact
-                      path={`${path}/mom-life/:slug`}
+                      path={`${path}/mom-life/?page=:page/:slug`}
                       component={PostDetail}
                     />
                     <Route
@@ -157,7 +144,7 @@ function App() {
                       exact
                       path={`${path}/crafts/:slug`}
                       component={PostDetail}
-                    />
+                    /> */}
                   </Switch>
                 </div>
               </Grid>

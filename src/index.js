@@ -9,11 +9,14 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 const routes = (
-  <Router>
+  <Router history={history}>
     <Switch>
-      <Route path="/blog" component={App} />
+      <Route  path="/blog" component={App} />
       <Redirect from="/" to="/blog" />
     </Switch>
   </Router>

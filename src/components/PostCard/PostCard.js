@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
@@ -13,7 +13,7 @@ function PostCard(props) {
   const classes = postCardStyles();
 
   //destructure properties needed for data utlized in this component
-  const {image, title, slug, createdAt} = props;
+  const { image, title, slug, createdAt } = props;
 
   //format timestamp into reader-friendly date
   let publishDate = new Date(createdAt).toLocaleDateString("en-us", {
@@ -23,19 +23,15 @@ function PostCard(props) {
   });
 
   //build on url to create link to PostDetail page
-  let {  path } = useRouteMatch();
-
+  const { url } = useRouteMatch();
+  
   return (
     <React.Fragment>
       <Paper className={classes.paper} elevation={1}>
         <CardActionArea className={classes.cardAction}>
           <Card className={classes.root} square>
-            <Link className={classes.cardLink} to={`${path}/${slug}`}>
-              <CardMedia
-                className={classes.media}
-                image={image}
-                alt={title}
-              />
+            <Link className={classes.cardLink} to={`${url}/${slug}`}>
+              <CardMedia className={classes.media} image={image} alt={title} />
               <CardContent align="left">
                 <Typography gutterBottom variant="h5" component="h4">
                   {title}

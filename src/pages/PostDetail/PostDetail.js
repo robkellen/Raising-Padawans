@@ -10,6 +10,7 @@ function PostDetail() {
   const classes = postDetailStyles();
 
   //set initial state
+  const [loading, setLoading] = useState(false);
   const [post, setPost] = useState({
     title: "",
     image: [],
@@ -20,6 +21,7 @@ function PostDetail() {
   let { slug } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     const fetchPost = async () => {
       const { post } = await request(
         "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
@@ -37,23 +39,26 @@ function PostDetail() {
           }
           slug
           craftsCategory
-    	    momLifeCategory
-    	    adventureCategory
-    	    booksCategory
+          momLifeCategory
+          adventureCategory
+          booksCategory
         }
       }
     `
       );
 
       setPost(post);
+
+      return setLoading(false);
     };
 
     fetchPost();
-  }, [slug]);
+  }, []);
+  console.log(slug);
 
   return (
     <div>
-      {!post ? (
+      {loading ? (
         "Loading..."
       ) : (
         <React.Fragment>
@@ -62,13 +67,11 @@ function PostDetail() {
               <Grid className={classes.postTitle} item xs={12}>
                 <h1>{post.title}</h1>
               </Grid>
-              {/* <Grid item> */}
               <img
                 className={classes.mainPostImg}
                 src={post.image.url}
                 alt="test"
               />
-              {/* </Grid> */}
               <Grid container justify="space-evenly" alignItems="flex-start">
                 <Grid item xs={9} className={classes.postContent}>
                   <p dangerouslySetInnerHTML={{ __html: post.content.html }} />

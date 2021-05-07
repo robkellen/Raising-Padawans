@@ -1,95 +1,175 @@
 import { request, gql } from "graphql-request";
-//import graphCMS API key 
+//import graphCMS API key
 import { graphcmsKey } from "../_graphcmsKey";
 
 const allPostsQuery = gql`
   {
-    posts {
-      id
-      title
-      content {
-        html
+    postsConnection(first: 6, orderBy: createdAt_DESC) {
+      edges {
+        cursor
+        node {
+          id
+          title
+          createdAt
+          image {
+            id
+            url
+          }
+          slug
+          craftsCategory
+          momLifeCategory
+          adventureCategory
+          booksCategory
+        }
       }
-      createdAt
-      image {
-        id
-        url
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+        pageSize
       }
-      slug
+      aggregate {
+        count
+      }
     }
   }
 `;
 
 const momLifePostsQuery = gql`
-  {
-    posts(where: { momLifeCategory: true }) {
-      id
-      title
-      content {
-        html
-      }
-      createdAt
-      image {
+{
+  postsConnection(where: {momLifeCategory: true}, first: 6, orderBy: createdAt_DESC) {
+    edges {
+      cursor
+      node {
         id
-        url
+        title
+        createdAt
+        image {
+          id
+          url
+        }
+        slug
+        craftsCategory
+        momLifeCategory
+        adventureCategory
+        booksCategory
       }
-      slug
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+      pageSize
+    }
+    aggregate {
+      count
     }
   }
+}
 `;
 
 const adventuresPostQuery = gql`
-  {
-    posts(where: { adventureCategory: true }) {
-      id
-      title
-      content {
-        html
-      }
-      createdAt
-      image {
+{
+  postsConnection(where: {adventureCategory: true}, first: 6, orderBy: createdAt_DESC) {
+    edges {
+      cursor
+      node {
         id
-        url
+        title
+        createdAt
+        image {
+          id
+          url
+        }
+        slug
+        craftsCategory
+        momLifeCategory
+        adventureCategory
+        booksCategory
       }
-      slug
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+      pageSize
+    }
+    aggregate {
+      count
     }
   }
+}
 `;
 
 const booksPostQuery = gql`
-  {
-    posts(where: { booksCategory: true }) {
-      id
-      title
-      content {
-        html
-      }
-      createdAt
-      image {
+{
+  postsConnection(where: {booksCategory: true}, first: 6, orderBy: createdAt_DESC) {
+    edges {
+      cursor
+      node {
         id
-        url
+        title
+        createdAt
+        image {
+          id
+          url
+        }
+        slug
+        craftsCategory
+        momLifeCategory
+        adventureCategory
+        booksCategory
       }
-      slug
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+      pageSize
+    }
+    aggregate {
+      count
     }
   }
+}
 `;
 
 const craftsPostQuery = gql`
-  {
-    posts(where: { craftsCategory: true }) {
-      id
-      title
-      content {
-        html
-      }
-      createdAt
-      image {
+{
+  postsConnection(where: {craftsCategory: true}, first: 6, orderBy: createdAt_DESC) {
+    edges {
+      cursor
+      node {
         id
-        url
+        title
+        createdAt
+        image {
+          id
+          url
+        }
+        slug
+        craftsCategory
+        momLifeCategory
+        adventureCategory
+        booksCategory
       }
-      slug
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+      pageSize
+    }
+    aggregate {
+      count
     }
   }
+}
 `;
 
 export function homeQuery() {

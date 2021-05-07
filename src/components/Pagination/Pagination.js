@@ -16,10 +16,13 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
   }
 
   //set current page to new page when user clicks button to change pages
-  function changePage(event) {
-    const pageNumber = Number(event.target.textContent);
-    setCurrentPage(pageNumber);
-  }
+  const changePage = (event, value) => {
+    setPage(value);
+    history.push({
+      pathname: `${path}`,
+      search: "?page=" + value,
+    });
+  };
 
   //return the number of posts equal to the dataLimit to be displayed to the user
   const getPaginatedData = () => {
@@ -36,46 +39,35 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
 
   return (
     <React.Fragment>
-      <div>
-        <h1>{title}</h1>
+      <div className="pagination">
+        {/* previous button */}
+        <button
+          onClick={prevPage}
+          className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+        >
+          PREV
+        </button>
 
-        {/* show 6 posts at a time */}
-        <div className="dataContainer">
-          {getPaginatedData().map((d, idx) => (
-            <RenderComponent key={idx} data={d} />
-          ))}
-        </div>
-
-        <div className="pagination">
-          {/* previous button */}
+        {/* show page numbers */}
+        {getPaginationGroup().map((item, index) => (
           <button
-            onClick={prevPage}
-            className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+            key={index}
+            onClick={changePage}
+            className={`paginationItem ${
+              currentPage === item ? "active" : null
+            }`}
           >
-            PREV
+            <span>{item}</span>
           </button>
+        ))}
 
-          {/* show page numbers */}
-          {getPaginationGroup().map((item, index) => (
-            <button
-              key={index}
-              onClick={changePage}
-              className={`paginationItem ${
-                currentPage === item ? "active" : null
-              }`}
-            >
-              <span>{item}</span>
-            </button>
-          ))}
-
-          {/* next page button */}
-          <button
-            onClick={nextPage}
-            className={`next ${currentPage === pages ? "disabled" : ""}`}
-          >
-            NEXT
-          </button>
-        </div>
+        {/* next page button */}
+        <button
+          onClick={nextPage}
+          className={`next ${currentPage === pages ? "disabled" : ""}`}
+        >
+          NEXT
+        </button>
       </div>
     </React.Fragment>
   );

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useRouteMatch, useHistory, Switch, Route } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import HeroImage from "../../components/HeroImage/HeroImage";
 import PostCard from "../../components/PostCard/PostCard";
-import { Pagination } from "@material-ui/lab";
 import blogContentStyles from "./BlogContentStyles";
 import {
   homeQuery,
@@ -14,29 +14,34 @@ import {
   booksQuery,
   craftsQuery,
 } from "../../utils/queries/queries";
-import { useRouteMatch } from "react-router";
+import PostDetail from "../PostDetail/PostDetail";
 
-function HomeContent() {
+function BlogContent() {
   //defining classes and theme
   const classes = blogContentStyles();
 
-  let { url } = useRouteMatch();
+  //match url to determine which db query to utilize in getUrl()
+  let { path, url } = useRouteMatch();
+ 
 
   //setting state of posts
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  //set up functionality to change page # in url based on pagination button selected.
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+
   //setting state of pages
   const itemsPerPage = 6;
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(parseInt("" + params.get("page=")) || 1);
+
+  //set number of page buttons to show in pagination based on sum of total posts returned by each query
   const [numPages, setNumPages] = useState();
-  console.log(Math.round(posts.length / itemsPerPage));
-  console.log(posts);
 
   //match url to update content with corresponding query
   function getUrl() {
     switch (url) {
-      case "/blog":
-        return homeQuery();
       case "/blog/mom-life":
         return momLifeQuery();
       case "/blog/adventures":
@@ -50,30 +55,23 @@ function HomeContent() {
     }
   }
 
-  function getNumPages() {
-    let pages = Math.round(posts.length / itemsPerPage);
-    setNumPages(pages);
-  }
-
-  const changePage = (event, value) => {
-    setPage(value);
-  };
-
   useEffect(() => {
     setLoading(true);
     const fetchPosts = async () => {
-      const { posts } = await getUrl();
-      setPage(1);
-      getNumPages();
+      const { postsConnection } = await getUrl();
+      let posts = postsConnection.edges;
+      let totalPages = Math.ceil(postsConnection.aggregate.count / itemsPerPage);
+
       setPosts(posts);
+      setNumPages(totalPages);
       setLoading(false);
     };
-
     fetchPosts();
+
     //eslint-disable-next-line
   }, [url]);
+  console.log(numPages);
 
-  // console.log(numPages);
   return (
     <React.Fragment>
       <Grid>
@@ -93,36 +91,33 @@ function HomeContent() {
               </Grid>
             ) : (
               <>
-                {posts
-                  .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-                  .map((post) => (
-                    <Grid item xs={12} sm={6} md={4} key={post.id}>
-                      <PostCard
-                        id={post.id}
-                        image={post.image.url}
-                        title={post.title}
-                        slug={post.slug}
-                        createdAt={post.createdAt}
-                      />
-                    </Grid>
-                  ))}
-                <Grid container justify="center">
-                  <Grid item>
+                <Switch>
+                  <Route exact path={path}>
+                    {posts
+                      // .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                      .map((post) => (
+                        <Grid item xs={12} sm={6} md={4} key={post.node.id}>
+                          <PostCard
+                            id={post.node.id}
+                            image={post.node.image.url}
+                            title={post.node.title}
+                            slug={post.node.slug}
+                            createdAt={post.node.createdAt}
+                          />
+                        </Grid>
+                      ))}
+                    {/* <Grid item xs={12}>
                     <Box>
                       <Pagination
                         count={numPages}
                         page={page}
                         onChange={changePage}
-                        defaultPage={1}
-                        variant="outlined"
-                        size="large"
-                        showFirstButton
-                        showLastButton
-                        className={classes.paginator}
                       />
                     </Box>
-                  </Grid>
-                </Grid>
+                  </Grid> */}
+                  </Route>
+                  <Route path={`${path}/:slug`} component={PostDetail} />
+                </Switch>
               </>
             )}
           </Grid>
@@ -132,4 +127,4 @@ function HomeContent() {
   );
 }
 
-export default HomeContent;
+export default BlogContent;
