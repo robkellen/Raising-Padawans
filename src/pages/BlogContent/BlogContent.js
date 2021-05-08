@@ -34,13 +34,13 @@ function BlogContent() {
 
   //setting state of pages
   const itemsPerPage = 6;
-  const [page, setPage] = useState(parseInt("" + params.get("page=")) || 1);
+  const [currPage, setCurrPage] = useState(parseInt("" + params.get("page=")) || 1);
 
   //set number of page buttons to show in pagination based on sum of total posts returned by each query
   const [numPages, setNumPages] = useState();
 
   //match url to update content with corresponding query
-  function getUrl() {
+  const getUrl = () => {
     switch (url) {
       case "/blog/mom-life":
         return momLifeQuery();
@@ -70,7 +70,7 @@ function BlogContent() {
 
     //eslint-disable-next-line
   }, [url]);
-  console.log(numPages);
+  console.log(posts);
 
   return (
     <React.Fragment>

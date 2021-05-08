@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./Pagination.css";
 
 function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
@@ -16,6 +17,7 @@ function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
   }
 
   //set current page to new page when user clicks button to change pages
+  const history = useHistory();
   const changePage = (event, value) => {
     setPage(value);
     history.push({
