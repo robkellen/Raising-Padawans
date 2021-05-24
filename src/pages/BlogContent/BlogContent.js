@@ -5,7 +5,6 @@ import {
   Switch,
   Route,
   Link,
-  withRouter,
 } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -29,7 +28,7 @@ import {
 import PostDetail from "../PostDetail/PostDetail";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { graphcmsKey } from "../../utils/_graphcmsKey";
-import { useQuery, gql, ApolloProvider } from "@apollo/client";
+import { useQuery, ApolloProvider } from "@apollo/client";
 
 function BlogContent() {
   const client = new ApolloClient({
@@ -64,16 +63,17 @@ function BlogContent() {
   let params = new URLSearchParams(search);
 
   //setting state of pages
-  const [currPage, setCurrPage] = useState(
-    parseInt("" + params.get("page=")) || 0
-  );
+  const [currPage, setCurrPage] = useState(0);
+
+  // TODO: Use params to get page # from url for pagination
+  // parseInt("" + params.get("page=")) ||
 
   //defining how many posts to show per page
   const itemsPerPage = 6;
   //useQuery hook gets all posts and postsConnection data on page load
   const { loading, error, data, fetchMore } = useQuery(getUrl(), {
     variables: { first: itemsPerPage },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "cache",
   });
 
   //update url with page # when changed by pagination buttons
@@ -247,4 +247,4 @@ function BlogContent() {
   );
 }
 
-export default withRouter(BlogContent);
+export default BlogContent;

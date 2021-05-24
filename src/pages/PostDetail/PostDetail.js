@@ -21,39 +21,40 @@ function PostDetail() {
   //match route to selected post using the post's slug
   let { slug } = useParams();
 
+  const fetchPost = async () => {
+    const { post } = await request(
+      "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
+      `
+    { 
+      post (where: {slug: "${slug}"}) {
+        id
+        title
+        content {
+          html
+        }
+        createdAt
+        image {
+          url
+        }
+        slug
+        craftsCategory
+        momLifeCategory
+        adventureCategory
+        booksCategory
+      }
+    }
+  `
+    );
+
+    setPost(post);
+
+    return setLoading(false);
+  };
+
   useEffect(() => {
     setLoading(true);
-    const fetchPost = async () => {
-      const { post } = await request(
-        "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
-        `
-      { 
-        post (where: {slug: "${slug}"}) {
-          id
-          title
-          content {
-            html
-          }
-          createdAt
-          image {
-            url
-          }
-          slug
-          craftsCategory
-          momLifeCategory
-          adventureCategory
-          booksCategory
-        }
-      }
-    `
-      );
 
-      setPost(post);
-
-      return setLoading(false);
-    };
-
-    fetchPost().then(console.log(post));
+    fetchPost();
   }, []);
 
   return (
