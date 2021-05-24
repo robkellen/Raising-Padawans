@@ -1,10 +1,21 @@
-import { request, gql } from "graphql-request";
-//import graphCMS API key
-import { graphcmsKey } from "../_graphcmsKey";
+import gql from "graphql-tag";
 
-const allPostsQuery = gql`
-  {
-    postsConnection(first: 6, orderBy: createdAt_DESC) {
+export const ALL_POSTS = gql`
+  query posts(
+    $first: Int
+    $last: Int
+    $skip: Int
+    $before: String
+    $after: String
+  ) {
+    posts: postsConnection(
+      first: $first
+      last: $last
+      skip: $skip
+      before: $before
+      after: $after
+      orderBy: createdAt_DESC
+    ) {
       edges {
         cursor
         node {
@@ -36,158 +47,194 @@ const allPostsQuery = gql`
   }
 `;
 
-const momLifePostsQuery = gql`
-{
-  postsConnection(where: {momLifeCategory: true}, first: 6, orderBy: createdAt_DESC) {
-    edges {
-      cursor
-      node {
-        id
-        title
-        createdAt
-        image {
+export const MOM_LIFE_POSTS = gql`
+  query posts(
+    $first: Int
+    $last: Int
+    $skip: Int
+    $before: String
+    $after: String
+  ) {
+    posts: postsConnection(
+      where: { momLifeCategory: true }
+      first: $first
+      last: $last
+      skip: $skip
+      before: $before
+      after: $after
+      orderBy: createdAt_DESC
+    ) {
+      edges {
+        cursor
+        node {
           id
-          url
+          title
+          createdAt
+          image {
+            id
+            url
+          }
+          slug
+          craftsCategory
+          momLifeCategory
+          adventureCategory
+          booksCategory
         }
-        slug
-        craftsCategory
-        momLifeCategory
-        adventureCategory
-        booksCategory
+      }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+        pageSize
+      }
+      aggregate {
+        count
       }
     }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-      pageSize
-    }
-    aggregate {
-      count
-    }
   }
-}
 `;
 
-const adventuresPostQuery = gql`
-{
-  postsConnection(where: {adventureCategory: true}, first: 6, orderBy: createdAt_DESC) {
-    edges {
-      cursor
-      node {
-        id
-        title
-        createdAt
-        image {
+export const ADVENTURES_POSTS = gql`
+  query posts(
+    $first: Int
+    $last: Int
+    $skip: Int
+    $before: String
+    $after: String
+  ) {
+    posts: postsConnection(
+      where: { adventureCategory: true }
+      first: $first
+      last: $last
+      skip: $skip
+      before: $before
+      after: $after
+      orderBy: createdAt_DESC
+    ) {
+      edges {
+        cursor
+        node {
           id
-          url
+          title
+          createdAt
+          image {
+            id
+            url
+          }
+          slug
+          craftsCategory
+          momLifeCategory
+          adventureCategory
+          booksCategory
         }
-        slug
-        craftsCategory
-        momLifeCategory
-        adventureCategory
-        booksCategory
+      }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+        pageSize
+      }
+      aggregate {
+        count
       }
     }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-      pageSize
-    }
-    aggregate {
-      count
-    }
   }
-}
 `;
 
-const booksPostQuery = gql`
-{
-  postsConnection(where: {booksCategory: true}, first: 6, orderBy: createdAt_DESC) {
-    edges {
-      cursor
-      node {
-        id
-        title
-        createdAt
-        image {
+export const BOOKS_POSTS = gql`
+  query posts(
+    $first: Int
+    $last: Int
+    $skip: Int
+    $before: String
+    $after: String
+  ) {
+    posts: postsConnection(
+      first: $first
+      last: $last
+      skip: $skip
+      before: $before
+      after: $after
+      orderBy: createdAt_DESC
+    ) {
+      edges {
+        cursor
+        node {
           id
-          url
+          title
+          createdAt
+          image {
+            id
+            url
+          }
+          slug
+          craftsCategory
+          momLifeCategory
+          adventureCategory
+          booksCategory
         }
-        slug
-        craftsCategory
-        momLifeCategory
-        adventureCategory
-        booksCategory
+      }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+        pageSize
+      }
+      aggregate {
+        count
       }
     }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-      pageSize
-    }
-    aggregate {
-      count
-    }
   }
-}
 `;
 
-const craftsPostQuery = gql`
-{
-  postsConnection(where: {craftsCategory: true}, first: 6, orderBy: createdAt_DESC) {
-    edges {
-      cursor
-      node {
-        id
-        title
-        createdAt
-        image {
+export const CRAFTS_POSTS = gql`
+  query posts(
+    $first: Int
+    $last: Int
+    $skip: Int
+    $before: String
+    $after: String
+  ) {
+    posts: postsConnection(
+      where: { craftsCategory: true }
+      first: $first
+      last: $last
+      skip: $skip
+      before: $before
+      after: $after
+      orderBy: createdAt_DESC
+    ) {
+      edges {
+        cursor
+        node {
           id
-          url
+          title
+          createdAt
+          image {
+            id
+            url
+          }
+          slug
+          craftsCategory
+          momLifeCategory
+          adventureCategory
+          booksCategory
         }
-        slug
-        craftsCategory
-        momLifeCategory
-        adventureCategory
-        booksCategory
+      }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+        pageSize
+      }
+      aggregate {
+        count
       }
     }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-      pageSize
-    }
-    aggregate {
-      count
-    }
   }
-}
 `;
 
-export function homeQuery() {
-  return request(graphcmsKey, allPostsQuery);
-}
-
-export function momLifeQuery() {
-  return request(graphcmsKey, momLifePostsQuery);
-}
-
-export function adventuresQuery() {
-  return request(graphcmsKey, adventuresPostQuery);
-}
-
-export function booksQuery() {
-  return request(graphcmsKey, booksPostQuery);
-}
-
-export function craftsQuery() {
-  return request(graphcmsKey, craftsPostQuery);
-}

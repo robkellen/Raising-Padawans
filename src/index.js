@@ -3,15 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
+import { createBrowserHistory } from "history";
+import { Router, Route, Redirect, Switch } from "react-router-dom";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { graphcmsKey } from "./utils/_graphcmsKey";
-import { createBrowserHistory } from "history";
 import { ApolloProvider } from "@apollo/client/react";
 
 const history = createBrowserHistory();
@@ -23,57 +18,19 @@ const client = new ApolloClient({
   fetch,
 });
 
-// client
-//   .query({
-//     query: gql`
-//       {
-//         postsConnection(first: 6, orderBy: createdAt_DESC) {
-//           edges {
-//             cursor
-//             node {
-//               id
-//               title
-//               createdAt
-//               image {
-//                 id
-//                 url
-//               }
-//               slug
-//               craftsCategory
-//               momLifeCategory
-//               adventureCategory
-//               booksCategory
-//             }
-//           }
-//           pageInfo {
-//             hasNextPage
-//             hasPreviousPage
-//             startCursor
-//             endCursor
-//             pageSize
-//           }
-//           aggregate {
-//             count
-//           }
-//         }
-//       }
-//     `,
-//   })
-//   .then((result) => console.log(result));
-
 const routes = (
-  <ApolloProvider client={client}>
-    <Router history={history}>
-      <Switch>
-        <Route path="/blog" component={App} />
-        <Redirect from="/" to="/blog" />
-      </Switch>
-    </Router>
-  </ApolloProvider>
+  <Router history={history}>
+    <Switch>
+      <Route path="/blog" component={App} />
+      <Redirect from="/" to="/blog" />
+    </Switch>
+  </Router>
 );
 
 ReactDOM.render(
-  <React.StrictMode>{routes}</React.StrictMode>,
+  <ApolloProvider client={client}>
+    <React.StrictMode>{routes}</React.StrictMode>
+  </ApolloProvider>,
   document.getElementById("root")
 );
 

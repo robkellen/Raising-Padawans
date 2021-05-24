@@ -20,7 +20,7 @@ import Header from "./components/Header/Header";
 import BlogContent from "./pages/BlogContent/BlogContent";
 import PostDetail from "./pages/PostDetail/PostDetail";
 
-function App() {
+function App(props) {
   //defining classes and theme
   const classes = appStyles();
 
@@ -68,33 +68,33 @@ function App() {
                             component={Link}
                             label="Home"
                             className={classes.divider}
-                            to={`${url}?page=1`}
+                            to={`${url}`}
                           />
                           <Tab
                             component={Link}
                             label="Mom Life"
                             className={classes.divider}
-                            to={`${url}/mom-life?page=1`}
+                            to={`${url}/mom-life`}
                           />
                           <Tab
                             component={Link}
                             label="Adventures"
                             className={classes.divider}
-                            to={`${url}/adventures?page=1`}
+                            to={`${url}/adventures`}
                           />
                           <Tab
                             component={Link}
                             aria-label="Books"
                             label="Books"
                             className={classes.divider}
-                            to={`${url}/books?page=1`}
+                            to={`${url}/books`}
                           />
                           <Tab
                             component={Link}
                             aria-label="Crafts"
                             label="Crafts"
                             className={classes.divider}
-                            to={`${url}/crafts?page=1`}
+                            to={`${url}/crafts`}
                           />
                           <Tab
                             component={Link}

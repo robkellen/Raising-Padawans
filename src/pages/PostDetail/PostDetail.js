@@ -3,6 +3,7 @@ import request from "graphql-request";
 import { useParams } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import postDetailStyles from "./PostDetailStyles";
 
 function PostDetail() {
@@ -52,14 +53,15 @@ function PostDetail() {
       return setLoading(false);
     };
 
-    fetchPost();
+    fetchPost().then(console.log(post));
   }, []);
-  console.log(slug);
 
   return (
     <div>
       {loading ? (
-        "Loading..."
+        <Grid item className={classes.spinner}>
+          <CircularProgress color="secondary" />
+        </Grid>
       ) : (
         <React.Fragment>
           <Container className={classes.root}>
