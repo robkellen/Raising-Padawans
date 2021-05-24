@@ -126,6 +126,8 @@ function BlogContent() {
     });
   }
 
+  console.log(data);
+
   if (error) return `Error! ${error.message}`;
 
   return (
@@ -160,6 +162,10 @@ function BlogContent() {
                               title={post.node.title}
                               slug={post.node.slug}
                               createdAt={post.node.createdAt}
+                              momLifeCategory={post.node.momLifeCategory}
+                              adventuresCategory={post.node.adventuresCategory}
+                              booksCategory={post.node.booksCategory}
+                              craftsCategory={post.node.craftsCategory}
                             />
                           </Grid>
                         ))}

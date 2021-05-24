@@ -55,13 +55,16 @@ function PostDetail() {
     setLoading(true);
 
     fetchPost();
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div>
       {loading ? (
-        <Grid item className={classes.spinner}>
-          <CircularProgress color="secondary" />
+        <Grid container justify="center">
+          <Grid item className={classes.spinner}>
+            <CircularProgress color="secondary" />
+          </Grid>
         </Grid>
       ) : (
         <React.Fragment>
