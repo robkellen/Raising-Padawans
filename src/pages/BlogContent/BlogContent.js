@@ -14,9 +14,9 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import HeroImage from "../../components/HeroImage/HeroImage";
 import PostCard from "../../components/PostCard/PostCard";
+import Loading from "../../components/Loading/Loading";
 import blogContentStyles from "./BlogContentStyles";
 import {
   ALL_POSTS,
@@ -26,16 +26,21 @@ import {
   CRAFTS_POSTS,
 } from "../../utils/queries/queries";
 import PostDetail from "../PostDetail/PostDetail";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { graphcmsKey } from "../../utils/_graphcmsKey";
-import { useQuery, ApolloProvider } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 function BlogContent() {
-  const client = new ApolloClient({
-    uri: graphcmsKey,
-    cache: new InMemoryCache(),
-    // fetch,
-  });
+  // const client = new ApolloClient({
+  //   uri: graphcmsKey,
+  //   cache: new InMemoryCache({
+  //     typePolicies: {
+  //       Query: {
+  //         fields: {
+  //           posts: relayStylePagination(),
+  //         },
+  //       },
+  //     },
+  //   }),
+  // });
   //defining classes and theme
   const classes = blogContentStyles();
 
@@ -70,10 +75,11 @@ function BlogContent() {
 
   //defining how many posts to show per page
   const itemsPerPage = 6;
+  const first = 6;
   //useQuery hook gets all posts and postsConnection data on page load
-  const { loading, error, data, fetchMore } = useQuery(getUrl(), {
+  const { error, data, fetchMore, networkStatus } = useQuery(getUrl(), {
     variables: { first: itemsPerPage },
-    fetchPolicy: "cache",
+    // notifyOnNetworkStatusChange: true,
   });
 
   //update url with page # when changed by pagination buttons
@@ -119,76 +125,76 @@ function BlogContent() {
     setCurrPage(currPage + 1);
     fetchMore({
       variables: { first: itemsPerPage, after: data.posts.pageInfo.endCursor },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return fetchMoreResult;
-      },
+      // updateQuery: (prev, { fetchMoreResult }) => {
+      //   if (!fetchMoreResult) return prev;
+      //   return fetchMoreResult;
+      // },
     });
   }
 
-  console.log(data);
-
+  //if useQuery hook is loading return loading spinner
+  if (networkStatus === 1) return <Loading />;
   if (error) return `Error! ${error.message}`;
+  console.log(data);
+  console.log(data.posts.pageInfo.endCursor);
+
+  const hasNextPage = data.posts.pageInfo.hasNextPage;
+  const isRefetching = networkStatus === 3;
 
   return (
-    <ApolloProvider client={client}>
-      <React.Fragment>
-        <Grid>
-          <Grid item xs={12}>
-            <HeroImage />
-          </Grid>
-          <Container className={classes.postsContainer}>
-            <Grid
-              container
-              justify="center"
-              spacing={3}
-              className={classes.postsGrid}
-            >
-              {loading ? (
-                <Grid item className={classes.spinner}>
-                  <CircularProgress color="secondary" />
-                </Grid>
-              ) : (
-                <>
-                  <Switch>
-                    <Route exact path={path}>
-                      {data.posts.edges
-                        // .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-                        .map((post) => (
-                          <Grid item xs={12} sm={6} md={4} key={post.node.id}>
-                            <PostCard
-                              id={post.node.id}
-                              image={post.node.image.url}
-                              title={post.node.title}
-                              slug={post.node.slug}
-                              createdAt={post.node.createdAt}
-                              momLifeCategory={post.node.momLifeCategory}
-                              adventuresCategory={post.node.adventuresCategory}
-                              booksCategory={post.node.booksCategory}
-                              craftsCategory={post.node.craftsCategory}
-                            />
-                          </Grid>
-                        ))}
-                      <Grid container justify="center">
-                        <Grid item>
-                          <Box>
-                            {data.posts.pageInfo.hasPreviousPage ? (
-                              // <Link to={`${url}?page=${currPage - 1}`}>
-                              <IconButton
-                                title="Previous Posts"
-                                aria-label="previous"
-                                onClick={prevPage}
-                              >
-                                <ChevronLeftIcon />
-                              </IconButton>
-                            ) : (
-                              // </Link>
-                              <IconButton aria-label="previous" disabled>
-                                <ChevronLeftIcon />
-                              </IconButton>
-                            )}
-                            {/* TODO: Add functionality to page number buttons */}
-                            {/* <ButtonGroup aria-label="outlined button group">
+    // <ApolloProvider client={client}>
+    <React.Fragment>
+      <Grid>
+        <Grid item xs={12}>
+          <HeroImage />
+        </Grid>
+        <Container className={classes.postsContainer}>
+          <Grid
+            container
+            justify="center"
+            spacing={3}
+            className={classes.postsGrid}
+          >
+            <Switch>
+              <Route exact path={path}>
+                {data.posts.edges
+                  // .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                  .map((post) => (
+                    <Grid item xs={12} sm={6} md={4} key={post.node.id}>
+                      <PostCard
+                        id={post.node.id}
+                        image={post.node.image.url}
+                        title={post.node.title}
+                        slug={post.node.slug}
+                        createdAt={post.node.createdAt}
+                        momLifeCategory={post.node.momLifeCategory}
+                        adventuresCategory={post.node.adventuresCategory}
+                        booksCategory={post.node.booksCategory}
+                        craftsCategory={post.node.craftsCategory}
+                      />
+                    </Grid>
+                  ))}
+                <Grid container justify="center">
+                  <Grid item>
+                    <Box>
+                      {data.posts.pageInfo.hasPreviousPage ? (
+                        // <Link to={`${url}?page=${currPage - 1}`}>
+                        <IconButton
+                          title="Previous Posts"
+                          aria-label="previous"
+                          disabled={isRefetching}
+                          onClick={prevPage}
+                        >
+                          <ChevronLeftIcon />
+                        </IconButton>
+                      ) : (
+                        // </Link>
+                        <IconButton aria-label="previous" disabled>
+                          <ChevronLeftIcon />
+                        </IconButton>
+                      )}
+                      {/* TODO: Add functionality to page number buttons */}
+                      {/* <ButtonGroup aria-label="outlined button group">
                             {getPageRange(data.posts.aggregate.count).map(
                               (pg) => (
                                 <Button
@@ -222,34 +228,39 @@ function BlogContent() {
                               )
                             )}
                           </ButtonGroup> */}
-                            {data.posts.pageInfo.hasNextPage ? (
-                              // <Link to={`${url}?page=${currPage + 1}`}>
-                              <IconButton
-                                title="More Posts"
-                                aria-label="more posts"
-                                onClick={nextPage}
-                              >
-                                <ChevronRightIcon />
-                              </IconButton>
-                            ) : (
-                              // </Link>
-                              <IconButton aria-label="next" disabled>
-                                <ChevronRightIcon />
-                              </IconButton>
-                            )}
-                          </Box>
-                        </Grid>
-                      </Grid>
-                    </Route>
-                    <Route path={`${path}/:slug`} component={PostDetail} />
-                  </Switch>
-                </>
-              )}
-            </Grid>
-          </Container>
-        </Grid>
-      </React.Fragment>
-    </ApolloProvider>
+                      {hasNextPage ? (
+                        // <Link to={`${url}?page=${currPage + 1}`}>
+                        <IconButton
+                          title="More Posts"
+                          aria-label="more posts"
+                          onClick={() =>
+                            fetchMore({
+                              variables: {
+                                 itemsPerPage,
+                                after: data.posts.pageInfo.endCursor,
+                              },
+                            })
+                          }
+                        >
+                          <ChevronRightIcon />
+                        </IconButton>
+                      ) : (
+                        // </Link>
+                        <IconButton aria-label="next" disabled>
+                          <ChevronRightIcon />
+                        </IconButton>
+                      )}
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Route>
+              <Route path={`${path}/:slug`} component={PostDetail} />
+            </Switch>
+          </Grid>
+        </Container>
+      </Grid>
+    </React.Fragment>
+    // </ApolloProvider>
   );
 }
 

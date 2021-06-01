@@ -75,7 +75,7 @@ function AppNav() {
                 height="100"
               >
                 <image
-                  href="https://res.cloudinary.com/robbiek/image/upload/v1619464574/rose_gold_foil_vzelsi.jpg"
+                  href="https://res.cloudinary.com/robbiek/image/upload/v1619464574/Raising%20Padawans/rose_gold_foil_vzelsi.jpg"
                   x="0"
                   y="0"
                   width="100"

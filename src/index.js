@@ -8,14 +8,29 @@ import { Router, Route, Redirect, Switch } from "react-router-dom";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { graphcmsKey } from "./utils/_graphcmsKey";
 import { ApolloProvider } from "@apollo/client/react";
+import { relayStylePagination } from "@apollo/client/utilities";
 
 const history = createBrowserHistory();
 
 //connect Apollo Client to graphCMS API
 const client = new ApolloClient({
   uri: graphcmsKey,
-  cache: new InMemoryCache(),
-  fetch,
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          posts: {
+            postsConnection: {
+              keyArgs: false,
+              merge(existing = [], incoming) {
+                return [...existing];
+              },
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 const routes = (

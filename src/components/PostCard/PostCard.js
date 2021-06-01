@@ -35,7 +35,6 @@ function PostCard(props) {
 
   //build on url to create link to PostDetail page
   const { url } = useRouteMatch();
-  console.log(adventuresCategory);
 
   return (
     <React.Fragment>
@@ -55,7 +54,7 @@ function PostCard(props) {
               }}
             >
               <Grid container spacing={2}>
-                {momLifeCategory === true && url != "/blog/mom-life" ? (
+                {momLifeCategory === true && url !== "/blog/mom-life" ? (
                   <Grid item>
                     <Link to={`blog/mom-life`} className={classes.tagLink}>
                       <Typography gutterBottom variant="button" display="block">
