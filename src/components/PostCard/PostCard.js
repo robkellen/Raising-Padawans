@@ -6,6 +6,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import TagLink from "./TagLink";
 import postCardStyles from "./PostCardStyles";
 
 function PostCard(props) {
@@ -13,7 +15,16 @@ function PostCard(props) {
   const classes = postCardStyles();
 
   //destructure properties needed for data utlized in this component
-  const { image, title, slug, createdAt } = props;
+  const {
+    image,
+    title,
+    slug,
+    createdAt,
+    adventuresCategory,
+    booksCategory,
+    craftsCategory,
+    momLifeCategory,
+  } = props;
 
   //format timestamp into reader-friendly date
   let publishDate = new Date(createdAt).toLocaleDateString("en-us", {
@@ -24,25 +35,86 @@ function PostCard(props) {
 
   //build on url to create link to PostDetail page
   const { url } = useRouteMatch();
-  
+
   return (
     <React.Fragment>
       <Paper className={classes.paper} elevation={1}>
-        <CardActionArea className={classes.cardAction}>
-          <Card className={classes.root} square>
+        <Card className={classes.root} square>
+          <CardActionArea className={classes.cardAction}>
             <Link className={classes.cardLink} to={`${url}/${slug}`}>
               <CardMedia className={classes.media} image={image} alt={title} />
-              <CardContent align="left">
+            </Link>
+          </CardActionArea>
+
+          <CardContent align="left">
+            <CardActionArea
+              classes={{
+                root: classes.actionArea,
+                focusHighlight: classes.focusHighlight,
+              }}
+            >
+              <Grid container spacing={2}>
+                {momLifeCategory === true && url !== "/blog/mom-life" ? (
+                  <Grid item>
+                    <Link to={`blog/mom-life`} className={classes.tagLink}>
+                      <Typography gutterBottom variant="button" display="block">
+                        Mom-Life
+                      </Typography>
+                    </Link>
+                  </Grid>
+                ) : null}
+                {adventuresCategory === true && url !== "/blog/adventures" ? (
+                  <Grid item>
+                    <Link to={`blog/adventures`} className={classes.tagLink}>
+                      <Typography gutterBottom variant="button" display="block">
+                        Adventures
+                      </Typography>
+                    </Link>
+                  </Grid>
+                ) : null}
+                {booksCategory === true && url !== "/blog/books" ? (
+                  <Grid item>
+                    <Link to={`blog/books`} className={classes.tagLink}>
+                      <Typography gutterBottom variant="button" display="block">
+                        Books
+                      </Typography>
+                    </Link>
+                  </Grid>
+                ) : null}
+                {craftsCategory === true && url !== "/blog/crafts" ? (
+                  <Grid item>
+                    <Link to={`blog/crafts`} className={classes.tagLink}>
+                      <Typography gutterBottom variant="button" display="block">
+                        Crafts
+                      </Typography>
+                    </Link>
+                  </Grid>
+                ) : null}
+              </Grid>
+              {/* <TagLink
+                momLifeCategory={momLifeCategory}
+                adventuresCategory={adventuresCategory}
+                booksCategory={booksCategory}
+                craftsCategory={craftsCategory}
+                url={url}
+              /> */}
+
+              <Link className={classes.title} to={`${url}/${slug}`}>
                 <Typography gutterBottom variant="h5" component="h4">
                   {title}
                 </Typography>
-                <Typography gutterBottom variant="button" display="block">
-                  {publishDate}
-                </Typography>
-              </CardContent>
-            </Link>
-          </Card>
-        </CardActionArea>
+              </Link>
+            </CardActionArea>
+            <Typography
+              // gutterBottom
+              variant="button"
+              className={classes.tagLink}
+              display="block"
+            >
+              {publishDate}
+            </Typography>
+          </CardContent>
+        </Card>
       </Paper>
     </React.Fragment>
   );

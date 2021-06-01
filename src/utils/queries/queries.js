@@ -8,7 +8,7 @@ export const ALL_POSTS = gql`
     $before: String
     $after: String
   ) {
-    posts: postsConnection(
+   posts: postsConnection(
       first: $first
       last: $last
       skip: $skip

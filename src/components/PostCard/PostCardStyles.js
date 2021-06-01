@@ -19,6 +19,22 @@ const postCardStyles = makeStyles(() => ({
     color: "black",
     textDecoration: "none",
   },
+  title: {
+    color: "black",
+    textDecoration: "none",
+  },
+  tagLink: {
+    color: "#707070",
+    textDecoration: "none",
+    display: "inline-block",
+    
+  },
+  actionArea: {
+    "&:hover $focusHighlight": {
+      opacity: 0,
+    },
+  },
+  focusHighlight: {},
 }));
 
 export default postCardStyles;
