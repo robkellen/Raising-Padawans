@@ -19,14 +19,7 @@ const client = new ApolloClient({
     typePolicies: {
       Query: {
         fields: {
-          posts: {
-            postsConnection: {
-              keyArgs: false,
-              merge(existing = [], incoming) {
-                return [...existing];
-              },
-            },
-          },
+          postsConnection: relayStylePagination(),
         },
       },
     },

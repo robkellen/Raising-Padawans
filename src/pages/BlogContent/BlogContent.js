@@ -29,18 +29,6 @@ import PostDetail from "../PostDetail/PostDetail";
 import { useQuery } from "@apollo/client";
 
 function BlogContent() {
-  // const client = new ApolloClient({
-  //   uri: graphcmsKey,
-  //   cache: new InMemoryCache({
-  //     typePolicies: {
-  //       Query: {
-  //         fields: {
-  //           posts: relayStylePagination(),
-  //         },
-  //       },
-  //     },
-  //   }),
-  // });
   //defining classes and theme
   const classes = blogContentStyles();
 
@@ -78,8 +66,9 @@ function BlogContent() {
   const first = 6;
   //useQuery hook gets all posts and postsConnection data on page load
   const { error, data, fetchMore, networkStatus } = useQuery(getUrl(), {
+    fetchPolicy: "cache-and-network",
     variables: { first: itemsPerPage },
-    // notifyOnNetworkStatusChange: true,
+    notifyOnNetworkStatusChange: true,
   });
 
   //update url with page # when changed by pagination buttons
@@ -124,7 +113,7 @@ function BlogContent() {
   function nextPage() {
     setCurrPage(currPage + 1);
     fetchMore({
-      variables: { first: itemsPerPage, after: data.posts.pageInfo.endCursor },
+      variables: { first: itemsPerPage, skip: itemsPerPage },
       // updateQuery: (prev, { fetchMoreResult }) => {
       //   if (!fetchMoreResult) return prev;
       //   return fetchMoreResult;
@@ -135,11 +124,11 @@ function BlogContent() {
   //if useQuery hook is loading return loading spinner
   if (networkStatus === 1) return <Loading />;
   if (error) return `Error! ${error.message}`;
-  console.log(data);
-  console.log(data.posts.pageInfo.endCursor);
 
   const hasNextPage = data.posts.pageInfo.hasNextPage;
   const isRefetching = networkStatus === 3;
+
+  console.log(data.posts);
 
   return (
     // <ApolloProvider client={client}>
@@ -236,7 +225,7 @@ function BlogContent() {
                           onClick={() =>
                             fetchMore({
                               variables: {
-                                 itemsPerPage,
+                                first: itemsPerPage,
                                 after: data.posts.pageInfo.endCursor,
                               },
                             })
