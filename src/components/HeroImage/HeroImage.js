@@ -32,26 +32,10 @@ function HeroImage() {
     }
   };
 
-  const imageAlt = () => {
-    switch (url) {
-      case "/blog/mom-life":
-        return "Cooking with Cece";
-      case "/blog/adventures":
-        return "Cece at Aquarium";
-      case "/blog/books":
-        return "Girls sitting with books";
-      case "/blog/crafts":
-        return "Cece crafting";
-      default:
-        return "Family picture";
-    }
-  };
-
+  //when component mounts set the background image based on the matching url
   useEffect(() => {
-    setImage(getImage)
+    setImage(getImage);
   }, [url]);
-
-  console.log(image);
 
   return (
     <Paper
