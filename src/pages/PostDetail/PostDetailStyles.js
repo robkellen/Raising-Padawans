@@ -21,7 +21,8 @@ const postDetailStyles = makeStyles(() => ({
     textAlign: "center",
   },
   mainPostImg: {
-    maxWidth: "75%",
+    minWidth: "35%",
+    maxWidth: "50%",
   },
   postContent: {
     textAlign: "left",

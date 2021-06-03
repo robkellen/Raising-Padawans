@@ -55,6 +55,8 @@ function PostDetail() {
     setLoading(true);
 
     fetchPost();
+
+    return post;
     // eslint-disable-next-line
   }, []);
 

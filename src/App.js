@@ -125,26 +125,6 @@ function App(props) {
                       component={PostDetail}
                     />
                     <Route exact path={path} component={BlogContent} />
-                    {/* <Route
-                      exact
-                      path={`${path}/mom-life/?page=:page/:slug`}
-                      component={PostDetail}
-                    />
-                    <Route
-                      exact
-                      path={`${path}/adventures/:slug`}
-                      component={PostDetail}
-                    />
-                    <Route
-                      exact
-                      path={`${path}/books/:slug`}
-                      component={PostDetail}
-                    />
-                    <Route
-                      exact
-                      path={`${path}/crafts/:slug`}
-                      component={PostDetail}
-                    /> */}
                   </Switch>
                 </div>
               </Grid>
