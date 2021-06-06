@@ -20,23 +20,25 @@ function BlogContent() {
   return (
     <React.Fragment>
       <Grid>
-        <Grid item xs={12}>
-          <HeroImage />
-        </Grid>
-        <Container className={classes.postsContainer}>
-          <Grid
-            container
-            justify="center"
-            spacing={3}
-            className={classes.postsGrid}
-          >
-            <Switch>
-              <Route exact path={path} component={Posts} />
+        <Switch>
+          <Route exact path={path}>
+            <Grid item xs={12}>
+              <HeroImage />
+            </Grid>
+            <Container className={classes.postsContainer}>
+              <Grid
+                container
+                justify="center"
+                spacing={3}
+                className={classes.postsGrid}
+              >
+                <Posts />
+              </Grid>
+            </Container>
+          </Route>
 
-              <Route path={`${path}/:slug`} component={PostDetail} />
-            </Switch>
-          </Grid>
-        </Container>
+          <Route path={`${path}/:slug`} component={PostDetail} />
+        </Switch>
       </Grid>
     </React.Fragment>
   );

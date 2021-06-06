@@ -124,7 +124,7 @@ function App(props) {
                       path={`${path}/:slug`}
                       component={PostDetail}
                     />
-                    <Route exact path={path} component={BlogContent} />
+                    <Route path={path} component={BlogContent} />
                   </Switch>
                 </div>
               </Grid>

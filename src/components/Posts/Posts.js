@@ -36,10 +36,6 @@ function Posts() {
     }
   };
 
-  //set up functionality to change page # in url based on pagination button selected.
-  let search = window.location.search;
-  let params = new URLSearchParams(search);
-
   //defining how many posts to show per page
   const itemsPerLoad = 6;
 
@@ -56,8 +52,6 @@ function Posts() {
 
   const hasNextPage = data.posts.pageInfo.hasNextPage;
   const isRefetching = networkStatus === 3;
-
-  console.log(data.posts);
 
   return (
     <>
