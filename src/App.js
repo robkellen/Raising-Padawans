@@ -20,7 +20,7 @@ import Header from "./components/Header/Header";
 import BlogContent from "./pages/BlogContent/BlogContent";
 import PostDetail from "./pages/PostDetail/PostDetail";
 
-function App(props) {
+function App() {
   //defining classes and theme
   const classes = appStyles();
 

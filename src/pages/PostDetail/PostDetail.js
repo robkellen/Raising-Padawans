@@ -3,7 +3,7 @@ import request from "graphql-request";
 import { useParams } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import Loading from "../../components/Loading/Loading";
 import postDetailStyles from "./PostDetailStyles";
 
 function PostDetail() {
@@ -22,33 +22,37 @@ function PostDetail() {
   let { slug } = useParams();
 
   const fetchPost = async () => {
-    const { post } = await request(
-      "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
-      `
-    { 
-      post (where: {slug: "${slug}"}) {
-        id
-        title
-        content {
-          html
+    try {
+      const { post } = await request(
+        "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
+        `
+      { 
+        post (where: {slug: "${slug}"}) {
+          id
+          title
+          content {
+            html
+          }
+          createdAt
+          image {
+            url
+          }
+          slug
+          craftsCategory
+          momLifeCategory
+          adventureCategory
+          booksCategory
         }
-        createdAt
-        image {
-          url
-        }
-        slug
-        craftsCategory
-        momLifeCategory
-        adventureCategory
-        booksCategory
       }
+    `
+      );
+
+      setPost(post);
+
+      return setLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-  `
-    );
-
-    setPost(post);
-
-    return setLoading(false);
   };
 
   useEffect(() => {
@@ -61,13 +65,9 @@ function PostDetail() {
   }, []);
 
   return (
-    <div>
+    <>
       {loading ? (
-        <Grid container justify="center">
-          <Grid item className={classes.spinner}>
-            <CircularProgress color="secondary" />
-          </Grid>
-        </Grid>
+        <Loading />
       ) : (
         <React.Fragment>
           <Container className={classes.root}>
@@ -89,7 +89,7 @@ function PostDetail() {
           </Container>
         </React.Fragment>
       )}
-    </div>
+    </>
   );
 }
 

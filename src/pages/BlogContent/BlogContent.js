@@ -26,14 +26,14 @@ function BlogContent() {
               <HeroImage />
             </Grid>
             <Container className={classes.postsContainer}>
-              <Grid
+              {/* <Grid
                 container
                 justify="center"
                 spacing={3}
                 className={classes.postsGrid}
-              >
+              > */}
                 <Posts />
-              </Grid>
+              {/* </Grid> */}
             </Container>
           </Route>
 

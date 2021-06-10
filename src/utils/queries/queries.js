@@ -8,7 +8,7 @@ export const ALL_POSTS = gql`
     $before: String
     $after: String
   ) {
-   posts: postsConnection(
+    posts: postsConnection(
       first: $first
       last: $last
       skip: $skip
@@ -238,3 +238,23 @@ export const CRAFTS_POSTS = gql`
   }
 `;
 
+export const SINGLE_POST = gql`
+  query post($slug: String) {
+    post(where: { slug: $slug }) {
+      id
+      title
+      content {
+        html
+      }
+      createdAt
+      image {
+        url
+      }
+      slug
+      craftsCategory
+      momLifeCategory
+      adventureCategory
+      booksCategory
+    }
+  }
+`;

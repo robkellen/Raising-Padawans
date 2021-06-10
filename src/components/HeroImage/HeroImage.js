@@ -35,6 +35,7 @@ function HeroImage() {
   //when component mounts set the background image based on the matching url
   useEffect(() => {
     setImage(getImage);
+    //eslint-disable-next-line
   }, [url]);
 
   return (
