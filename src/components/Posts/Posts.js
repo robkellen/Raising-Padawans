@@ -12,11 +12,16 @@ import {
 } from "../../utils/queries/queries";
 import PostCard from "../PostCard/PostCard";
 import Loading from "../Loading/Loading";
+import PostCounter from "../PostCounter/PostCounter";
 import { useQuery } from "@apollo/client";
+
+import postsStyles from "./PostsStyles";
 
 const delay = true;
 
 function Posts() {
+  //defining styles for Posts component
+  const classes = postsStyles();
   //match url to determine which db query to utilize in getUrl()
   let { url } = useRouteMatch();
 
@@ -74,6 +79,8 @@ function Posts() {
   const isRefetching = networkStatus === 3;
   const posts = data.posts.edges;
 
+  console.log(data.posts);
+
   return (
     <>
       <div id="posts">
@@ -94,8 +101,12 @@ function Posts() {
             </Grid>
           ))}
           <Grid container justify="center">
-            <Grid item>
-              <Box>
+            <PostCounter
+              numLoaded={posts.length}
+              total={data.posts.aggregate.count}
+            />
+            <Grid item xs={12}>
+              <Box className={classes.loadMoreButton}>
                 {hasNextPage && (
                   <Button
                     ref={setButtonRef}
@@ -114,7 +125,7 @@ function Posts() {
                       })
                     }
                   >
-                    Load More
+                    Loading...
                   </Button>
                 )}
               </Box>
