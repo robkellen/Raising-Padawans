@@ -26,17 +26,9 @@ function BlogContent() {
               <HeroImage />
             </Grid>
             <Container className={classes.postsContainer}>
-              {/* <Grid
-                container
-                justify="center"
-                spacing={3}
-                className={classes.postsGrid}
-              > */}
-                <Posts />
-              {/* </Grid> */}
+              <Posts />
             </Container>
           </Route>
-
           <Route path={`${path}/:slug`} component={PostDetail} />
         </Switch>
       </Grid>
