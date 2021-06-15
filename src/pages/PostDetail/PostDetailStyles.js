@@ -1,7 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const postDetailStyles = makeStyles(() => ({
+const postDetailStyles = makeStyles((theme) => ({
   root: {
+    width: "100%",
+    backgroundColor: theme.palette.paper,
+  },
+  container: {
     marginTop: "25px",
     backgroundSize: "auto",
   },
@@ -14,6 +18,9 @@ const postDetailStyles = makeStyles(() => ({
   },
   postContent: {
     textAlign: "left",
+  },
+  divider: {
+    backgroundColor: "white !important",
   },
 }));
 
