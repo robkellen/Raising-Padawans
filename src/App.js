@@ -19,6 +19,7 @@ import AppNav from "./components/AppNav/AppNav";
 import Header from "./components/Header/Header";
 import BlogContent from "./pages/BlogContent/BlogContent";
 import PostDetail from "./pages/PostDetail/PostDetail";
+import About from "./pages/AboutPage/AboutPage";
 
 function App() {
   //defining classes and theme
@@ -117,7 +118,7 @@ function App() {
                     <Route
                       exact
                       path={`${path}/about`}
-                      component={BlogContent}
+                      component={About}
                     />
                     <Route
                       exact
