@@ -13,8 +13,9 @@ function HeroImage() {
 
   //set state of component based on route match
   const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
 
-  //match url to determine which db query to utilize in getUrl()
+  //match url to determine which db query to utilize in getUrl() & getTitle
   let { url } = useRouteMatch();
 
   const getImage = () => {
@@ -32,9 +33,25 @@ function HeroImage() {
     }
   };
 
+  const getTitle = () => {
+    switch (url) {
+      case "/blog/mom-life":
+        return "Mom Life";
+      case "/blog/adventures":
+        return "Adventures";
+      case "/blog/books":
+        return "Books";
+      case "/blog/crafts":
+        return "Crafts";
+      default:
+        return "Home";
+    }
+  };
+
   //when component mounts set the background image based on the matching url
   useEffect(() => {
     setImage(getImage);
+    setTitle(getTitle);
     //eslint-disable-next-line
   }, [url]);
 
@@ -55,8 +72,8 @@ function HeroImage() {
         />
       }
       <div className={classes.overlay} />
-      <Grid container>
-        <Grid item md={6}>
+      <Grid container justify="center">
+        <Grid item xs={12}>
           <div className={classes.mainImageContent}>
             <Typography
               component="h1"
@@ -64,14 +81,14 @@ function HeroImage() {
               color="inherit"
               gutterBottom
             >
-              Sample Title
+              {title}
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            {/* <Typography variant="h5" color="inherit" paragraph>
               Sample Description
             </Typography>
             <Link variant="subtitle1" href="#">
               Sample Link
-            </Link>
+            </Link> */}
           </div>
         </Grid>
       </Grid>

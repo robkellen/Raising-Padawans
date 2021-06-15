@@ -29,11 +29,12 @@ const heroImageStyles = makeStyles((theme) => ({
   },
   mainImageContent: {
     position: "relative",
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
     [theme.breakpoints.up("sm")]: {
-      padding: theme.spacing(10),
-      paddingRight: 0,
+      paddingTop: theme.spacing(40),
+      // paddingRight: 0,
     },
+    textAlign: "center",
   },
 }));
 
