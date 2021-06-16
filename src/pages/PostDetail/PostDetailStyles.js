@@ -19,8 +19,8 @@ const postDetailStyles = makeStyles((theme) => ({
   postContent: {
     textAlign: "left",
   },
-  divider: {
-    backgroundColor: "white !important",
+  socialMediaShareBtn: {
+    padding: theme.spacing(2),
   },
 }));
 
