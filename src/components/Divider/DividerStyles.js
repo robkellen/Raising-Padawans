@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useDividerStyles = makeStyles((theme) => ({
   container: {
-    flexGrow: 0.5,
+    flexGrow: 0.75,
     display: "flex",
     alignItems: "center",
     paddingTop: theme.spacing(2),

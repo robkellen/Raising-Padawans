@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import request from "graphql-request";
-import { useParams } from "react-router-dom";
+import { useParams, useRouteMatch } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import PinterestIcon from "@material-ui/icons/Pinterest";
+import FacebookIcon from "@material-ui/icons/Facebook";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Loading from "../../components/Loading/Loading";
@@ -67,6 +70,9 @@ function PostDetail() {
     // eslint-disable-next-line
   }, []);
 
+  //get url from useRouteMatch to use in social media button links
+  const { url } = useRouteMatch();
+
   return (
     <>
       {loading ? (
@@ -91,7 +97,46 @@ function PostDetail() {
                     />
                   </Grid>
                 </Grid>
-                <Divider>Share</Divider>
+                <Grid container justify="center">
+                  <Divider>Share</Divider>
+                </Grid>
+                <Grid item className={classes.socialMediaShareBtn}>
+                  <a
+                    href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                    className="twitter-share-button"
+                    data-show-count="false"
+                  >
+                    <TwitterIcon fontSize="large" color="secondary" />
+                  </a>
+                  <script
+                    async
+                    src="https://platform.twitter.com/widgets.js"
+                    charSet="utf-8"
+                  ></script>
+                </Grid>
+                <Grid item className={classes.socialMediaShareBtn}>
+                  {/* TO DO: Make sure this functions once site is deployed.  Will not link correctly on local server */}
+                  <a
+                    className="facebook"
+                    href={`https://www.facebook.com/sharer.php?u=https://${url}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Share on Facebook"
+                  >
+                    <FacebookIcon fontSize="large" color="secondary" />
+                  </a>
+                </Grid>
+                <Grid item className={classes.socialMediaShareBtn}>
+                  <a
+                    className="pinterest"
+                    href={`https://pinterest.com/pin/create/button/?url=https://${url}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Share on Pinterest"
+                  >
+                    <PinterestIcon fontSize="large" color="secondary" />
+                  </a>
+                </Grid>
               </Grid>
             </Container>
           </div>
