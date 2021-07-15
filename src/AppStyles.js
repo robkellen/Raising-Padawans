@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const appStyles = makeStyles((theme) => ({
+const useAppStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
@@ -65,4 +65,4 @@ const appStyles = makeStyles((theme) => ({
   },
 }));
 
-export default appStyles;
+export default useAppStyles;

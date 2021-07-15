@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const postCounterStyles = makeStyles((theme) => ({
+const usePostCounterStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(2),
   },
@@ -10,4 +10,4 @@ const postCounterStyles = makeStyles((theme) => ({
   },
 }));
 
-export default postCounterStyles;
+export default usePostCounterStyles;

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const postDetailStyles = makeStyles((theme) => ({
+const usePostDetailStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     backgroundColor: theme.palette.paper,
@@ -24,4 +24,4 @@ const postDetailStyles = makeStyles((theme) => ({
   },
 }));
 
-export default postDetailStyles;
+export default usePostDetailStyles;

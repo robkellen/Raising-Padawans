@@ -19,11 +19,11 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import MailIcon from "@material-ui/icons/Mail";
 import AppNavLogo from "./AppNavLogo";
-import appNavStyles from "./AppNavStyles";
+import useAppNavStyles from "./AppNavStyles";
 
 function AppNav() {
   //define styles
-  const classes = appNavStyles();
+  const classes = useAppNavStyles();
   const theme = useTheme();
 
   //set initial state of side drawer to be closed

@@ -6,7 +6,7 @@ import {
   Link,
   useRouteMatch,
 } from "react-router-dom";
-import appStyles from "./AppStyles";
+import useAppStyles from "./AppStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -22,7 +22,7 @@ import PostDetail from "./pages/PostDetail/PostDetail";
 
 function App() {
   //defining classes and theme
-  const classes = appStyles();
+  const classes = useAppStyles();
 
   //determine screen size of user to make tabs centered on large devices, and scrollable on small devices
   const theme = useTheme();

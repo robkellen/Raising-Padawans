@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const postCardStyles = makeStyles(() => ({
+const usePostCardStyles = makeStyles(() => ({
   root: {
     maxWidth: 400,
     height: 400,
     flexGrow: 1,
-    border: "10px solid white",
+    // border: "5px solid white",
   },
   paper: {
     transition: "transform 0.15s ease-in-out",
@@ -27,7 +27,6 @@ const postCardStyles = makeStyles(() => ({
     color: "#707070",
     textDecoration: "none",
     display: "inline-block",
-    
   },
   actionArea: {
     "&:hover $focusHighlight": {
@@ -37,4 +36,4 @@ const postCardStyles = makeStyles(() => ({
   focusHighlight: {},
 }));
 
-export default postCardStyles;
+export default usePostCardStyles;

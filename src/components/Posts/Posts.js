@@ -14,14 +14,13 @@ import PostCard from "../PostCard/PostCard";
 import Loading from "../Loading/Loading";
 import PostCounter from "../PostCounter/PostCounter";
 import { useQuery } from "@apollo/client";
-
-import postsStyles from "./PostsStyles";
+import usePostsStyles from "./PostsStyles";
 
 const delay = true;
 
 function Posts() {
   //defining styles for Posts component
-  const classes = postsStyles();
+  const classes = usePostsStyles();
   //match url to determine which db query to utilize in getUrl()
   let { url } = useRouteMatch();
 
@@ -41,11 +40,11 @@ function Posts() {
     }
   };
 
-  //defining how many posts to show per page
+  //defining how many posts to show per fetch
   const itemsPerLoad = 6;
 
   //useQuery hook gets all posts and postsConnection data on page load
-  const { error, data, fetchMore, networkStatus } = useQuery(getUrl(), {
+  const {loading, error, data, fetchMore, networkStatus } = useQuery(getUrl(), {
     fetchPolicy: "cache-and-network",
     variables: { first: itemsPerLoad },
     notifyOnNetworkStatusChange: true,
@@ -56,30 +55,37 @@ function Posts() {
   const [buttonRef, setButtonRef] = useState(null);
 
   useEffect(() => {
+    let componentMounted = true;
     const options = { root: document.querySelector("#posts"), threshold: 0.1 };
     observerRef.current = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && componentMounted) {
         entry.target.click();
       }
     }, options);
+    return () => {
+      componentMounted = false;
+    };
   }, []);
 
   useEffect(() => {
-    if (buttonRef) {
+    let componentMounted = true;
+    if (buttonRef && componentMounted) {
       observerRef.current.observe(document.querySelector("#buttonLoadMore"));
     }
+    return () => {
+      componentMounted = false;
+    };
   }, [buttonRef]);
 
   //if useQuery hook is loading return loading spinner
+  if (loading) return <Loading />
   if (networkStatus === 1) return <Loading />;
   if (error) return `Error! ${error.message}`;
 
   const hasNextPage = data.posts.pageInfo.hasNextPage;
   const isRefetching = networkStatus === 3;
   const posts = data.posts.edges;
-
-  console.log(data.posts);
 
   return (
     <>

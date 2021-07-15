@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const blogContentStyles = makeStyles((theme) => ({
+const useBlogContentStyles = makeStyles((theme) => ({
   postsContainer: {
     height: "80"
   },
@@ -14,4 +14,4 @@ const blogContentStyles = makeStyles((theme) => ({
   },
 }));
 
-export default blogContentStyles;
+export default useBlogContentStyles;

@@ -3,12 +3,12 @@ import { useRouteMatch } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import heroImageStyles from "./HeroImageStyles";
+import useHeroImageStyles from "./HeroImageStyles";
 import FamilyChristmas from "../../utils/images/FamilyChristmas.jpeg";
 
 function HeroImage() {
   //define style
-  const classes = heroImageStyles();
+  const classes = useHeroImageStyles();
 
   //set state of component based on route match
   const [image, setImage] = useState("");

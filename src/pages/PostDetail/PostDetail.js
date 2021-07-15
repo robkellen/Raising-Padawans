@@ -8,11 +8,11 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import Grid from "@material-ui/core/Grid";
 import Loading from "../../components/Loading/Loading";
 import Divider from "../../components/Divider/Divider";
-import postDetailStyles from "./PostDetailStyles";
+import usePostDetailStyles from "./PostDetailStyles";
 
 function PostDetail() {
   //define styles
-  const classes = postDetailStyles();
+  const classes = usePostDetailStyles();
 
   //set initial state
   const [loading, setLoading] = useState(false);
@@ -60,11 +60,15 @@ function PostDetail() {
   };
 
   useEffect(() => {
-    setLoading(true);
+    let componentMounted = true;
+    if (componentMounted) {
+      setLoading(true);
 
-    fetchPost();
+      fetchPost();
+    }
 
-    return post;
+    return () => (componentMounted = false);
+
     // eslint-disable-next-line
   }, []);
 

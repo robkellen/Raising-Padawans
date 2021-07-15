@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const heroImageStyles = makeStyles((theme) => ({
+const useHeroImageStyles = makeStyles((theme) => ({
   mainImage: {
     position: "relative",
     backgroundColor: theme.palette.grey[800],
@@ -38,4 +38,4 @@ const heroImageStyles = makeStyles((theme) => ({
   },
 }));
 
-export default heroImageStyles;
+export default useHeroImageStyles;

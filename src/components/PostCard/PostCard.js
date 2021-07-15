@@ -7,11 +7,11 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import postCardStyles from "./PostCardStyles";
+import usePostCardStyles from "./PostCardStyles";
 
 function PostCard(props) {
   //define styles
-  const classes = postCardStyles();
+  const classes = usePostCardStyles();
 
   //destructure properties needed for data utlized in this component
   const {
@@ -37,14 +37,13 @@ function PostCard(props) {
 
   return (
     <React.Fragment>
-      <Paper className={classes.paper} elevation={1}>
+      <Paper className={classes.paper}>
         <Card className={classes.root} square>
           <CardActionArea className={classes.cardAction}>
             <Link className={classes.cardLink} to={`${url}/${slug}`}>
               <CardMedia className={classes.media} image={image} alt={title} />
             </Link>
           </CardActionArea>
-
           <CardContent align="left">
             <CardActionArea
               classes={{
@@ -53,7 +52,7 @@ function PostCard(props) {
               }}
             >
               <Grid container spacing={2}>
-                {momLifeCategory === true && url !== "/blog/mom-life" ? (
+                {momLifeCategory === true ? (
                   <Grid item>
                     <Link to={`blog/mom-life`} className={classes.tagLink}>
                       <Typography gutterBottom variant="button" display="block">
@@ -62,7 +61,7 @@ function PostCard(props) {
                     </Link>
                   </Grid>
                 ) : null}
-                {adventuresCategory === true && url !== "/blog/adventures" ? (
+                {adventuresCategory === true ? (
                   <Grid item>
                     <Link to={`blog/adventures`} className={classes.tagLink}>
                       <Typography gutterBottom variant="button" display="block">
@@ -71,7 +70,7 @@ function PostCard(props) {
                     </Link>
                   </Grid>
                 ) : null}
-                {booksCategory === true && url !== "/blog/books" ? (
+                {booksCategory === true ? (
                   <Grid item>
                     <Link to={`blog/books`} className={classes.tagLink}>
                       <Typography gutterBottom variant="button" display="block">
@@ -80,7 +79,7 @@ function PostCard(props) {
                     </Link>
                   </Grid>
                 ) : null}
-                {craftsCategory === true && url !== "/blog/crafts" ? (
+                {craftsCategory === true ? (
                   <Grid item>
                     <Link to={`blog/crafts`} className={classes.tagLink}>
                       <Typography gutterBottom variant="button" display="block">
@@ -90,18 +89,12 @@ function PostCard(props) {
                   </Grid>
                 ) : null}
               </Grid>
-              {/* <TagLink
-                momLifeCategory={momLifeCategory}
-                adventuresCategory={adventuresCategory}
-                booksCategory={booksCategory}
-                craftsCategory={craftsCategory}
-                url={url}
-              /> */}
-
               <Link className={classes.title} to={`${url}/${slug}`}>
-                <Typography gutterBottom variant="h5" component="h4">
-                  {title}
-                </Typography>
+                <Grid item>
+                  <Typography gutterBottom variant="h5" component="h4" noWrap>
+                    {title}
+                  </Typography>
+                </Grid>
               </Link>
             </CardActionArea>
             <Typography

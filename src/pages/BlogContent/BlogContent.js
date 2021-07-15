@@ -2,17 +2,14 @@ import React from "react";
 import { useRouteMatch, Switch, Route } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-
 import HeroImage from "../../components/HeroImage/HeroImage";
 import Posts from "../../components/Posts/Posts";
-
-import blogContentStyles from "./BlogContentStyles";
-
+import useBlogContentStyles from "./BlogContentStyles";
 import PostDetail from "../PostDetail/PostDetail";
 
 function BlogContent() {
   //defining classes and theme
-  const classes = blogContentStyles();
+  const classes = useBlogContentStyles();
 
   //match url to determine which db query to utilize in getUrl()
   let { path } = useRouteMatch();

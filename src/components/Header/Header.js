@@ -3,12 +3,12 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import RPLogo from "../../utils/images/RPLogo.svg";
-import headerStyles from "./HeaderStyles";
+import useHeaderStyles from "./HeaderStyles";
 import "./Header.css"
 
 function Header() {
   //define style
-  const classes = headerStyles();
+  const classes = useHeaderStyles();
 
   return (
     <React.Fragment>

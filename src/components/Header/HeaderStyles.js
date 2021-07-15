@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const headerStyles = makeStyles((theme) => ({
+const useHeaderStyles = makeStyles((theme) => ({
   main: {
     paddingTop: theme.spacing(3),
     backgroundColor: "#f7f7f7",
@@ -45,4 +45,4 @@ const headerStyles = makeStyles((theme) => ({
   },
 }));
 
-export default headerStyles;
+export default useHeaderStyles;

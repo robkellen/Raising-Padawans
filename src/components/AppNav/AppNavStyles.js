@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
 
-const appNavStyles = makeStyles((theme) => ({
+const useAppNavStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
@@ -93,4 +93,4 @@ const appNavStyles = makeStyles((theme) => ({
   },
 }));
 
-export default appNavStyles;
+export default useAppNavStyles;
