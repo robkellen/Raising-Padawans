@@ -6,6 +6,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import PinterestIcon from "@material-ui/icons/Pinterest";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import Grid from "@material-ui/core/Grid";
+import { graphcmsKey } from "../../utils/_graphcmsKey";
 import Loading from "../../components/Loading/Loading";
 import Divider from "../../components/Divider/Divider";
 import usePostDetailStyles from "./PostDetailStyles";
@@ -28,7 +29,7 @@ function PostDetail() {
   const fetchPost = async () => {
     try {
       const { post } = await request(
-        "https://api-us-west-2.graphcms.com/v2/ckmccrd1544xl01z29ptafga9/master",
+        graphcmsKey,
         `
       { 
         post (where: {slug: "${slug}"}) {

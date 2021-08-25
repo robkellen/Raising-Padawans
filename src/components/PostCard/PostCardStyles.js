@@ -5,11 +5,11 @@ const usePostCardStyles = makeStyles(() => ({
     maxWidth: 400,
     height: 400,
     flexGrow: 1,
-    // border: "5px solid white",
-  },
-  paper: {
+    border: "10px solid white",
     transition: "transform 0.15s ease-in-out",
     "&:hover": { transform: "scale3d(1.03, 1.03, 0.5)" },
+  },
+  paper: {
   },
   media: {
     height: 240,

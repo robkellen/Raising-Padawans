@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import Card from "@material-ui/core/Card";
-import Paper from "@material-ui/core/Paper";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -37,77 +36,74 @@ function PostCard(props) {
 
   return (
     <React.Fragment>
-      <Paper className={classes.paper}>
-        <Card className={classes.root} square>
-          <CardActionArea className={classes.cardAction}>
-            <Link className={classes.cardLink} to={`${url}/${slug}`}>
-              <CardMedia className={classes.media} image={image} alt={title} />
+      <Card className={classes.root} square>
+        <CardActionArea className={classes.cardAction}>
+          <Link className={classes.cardLink} to={`${url}/${slug}`}>
+            <CardMedia className={classes.media} image={image} alt={title} />
+          </Link>
+        </CardActionArea>
+        <CardContent align="left">
+          <CardActionArea
+            classes={{
+              root: classes.actionArea,
+              focusHighlight: classes.focusHighlight,
+            }}
+          >
+            <Grid container spacing={2}>
+              {momLifeCategory === true ? (
+                <Grid item>
+                  <Link to={`blog/mom-life`} className={classes.tagLink}>
+                    <Typography gutterBottom variant="button" display="block">
+                      Mom-Life
+                    </Typography>
+                  </Link>
+                </Grid>
+              ) : null}
+              {adventuresCategory === true ? (
+                <Grid item>
+                  <Link to={`blog/adventures`} className={classes.tagLink}>
+                    <Typography gutterBottom variant="button" display="block">
+                      Adventures
+                    </Typography>
+                  </Link>
+                </Grid>
+              ) : null}
+              {booksCategory === true ? (
+                <Grid item>
+                  <Link to={`blog/books`} className={classes.tagLink}>
+                    <Typography gutterBottom variant="button" display="block">
+                      Books
+                    </Typography>
+                  </Link>
+                </Grid>
+              ) : null}
+              {craftsCategory === true ? (
+                <Grid item>
+                  <Link to={`blog/crafts`} className={classes.tagLink}>
+                    <Typography gutterBottom variant="button" display="block">
+                      Crafts
+                    </Typography>
+                  </Link>
+                </Grid>
+              ) : null}
+            </Grid>
+            <Link className={classes.title} to={`${url}/${slug}`}>
+              <Grid item>
+                <Typography gutterBottom variant="h5" component="h4" noWrap>
+                  {title}
+                </Typography>
+              </Grid>
             </Link>
           </CardActionArea>
-          <CardContent align="left">
-            <CardActionArea
-              classes={{
-                root: classes.actionArea,
-                focusHighlight: classes.focusHighlight,
-              }}
-            >
-              <Grid container spacing={2}>
-                {momLifeCategory === true ? (
-                  <Grid item>
-                    <Link to={`blog/mom-life`} className={classes.tagLink}>
-                      <Typography gutterBottom variant="button" display="block">
-                        Mom-Life
-                      </Typography>
-                    </Link>
-                  </Grid>
-                ) : null}
-                {adventuresCategory === true ? (
-                  <Grid item>
-                    <Link to={`blog/adventures`} className={classes.tagLink}>
-                      <Typography gutterBottom variant="button" display="block">
-                        Adventures
-                      </Typography>
-                    </Link>
-                  </Grid>
-                ) : null}
-                {booksCategory === true ? (
-                  <Grid item>
-                    <Link to={`blog/books`} className={classes.tagLink}>
-                      <Typography gutterBottom variant="button" display="block">
-                        Books
-                      </Typography>
-                    </Link>
-                  </Grid>
-                ) : null}
-                {craftsCategory === true ? (
-                  <Grid item>
-                    <Link to={`blog/crafts`} className={classes.tagLink}>
-                      <Typography gutterBottom variant="button" display="block">
-                        Crafts
-                      </Typography>
-                    </Link>
-                  </Grid>
-                ) : null}
-              </Grid>
-              <Link className={classes.title} to={`${url}/${slug}`}>
-                <Grid item>
-                  <Typography gutterBottom variant="h5" component="h4" noWrap>
-                    {title}
-                  </Typography>
-                </Grid>
-              </Link>
-            </CardActionArea>
-            <Typography
-              // gutterBottom
-              variant="button"
-              className={classes.tagLink}
-              display="block"
-            >
-              {publishDate}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Paper>
+          <Typography
+            variant="button"
+            className={classes.tagLink}
+            display="block"
+          >
+            {publishDate}
+          </Typography>
+        </CardContent>
+      </Card>
     </React.Fragment>
   );
 }
