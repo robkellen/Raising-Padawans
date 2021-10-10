@@ -52,6 +52,7 @@ const useAppStyles = makeStyles((theme) => ({
     display: "none",
   },
   divider: {
+    color: "#fff",
     "& span.MuiTab-wrapper": {
       // color: "white",
       borderRight: "3px solid #DD9BAB",
