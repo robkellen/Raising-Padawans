@@ -100,7 +100,7 @@ function Posts() {
                 slug={post.node.slug}
                 createdAt={post.node.createdAt}
                 momLifeCategory={post.node.momLifeCategory}
-                adventuresCategory={post.node.adventuresCategory}
+                adventureCategory={post.node.adventureCategory}
                 booksCategory={post.node.booksCategory}
                 craftsCategory={post.node.craftsCategory}
               />

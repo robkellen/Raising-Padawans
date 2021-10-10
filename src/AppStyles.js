@@ -36,11 +36,10 @@ const useAppStyles = makeStyles((theme) => ({
   },
   tabs: {
     backgroundColor: " rgb(106,101,111) !important",
+    color: "#fff",
     borderTop: "thin solid gray",
     borderBottom: "thin solid gray",
-    "& span.MuiTab-wrapper": {
-      
-    },
+    "& span.MuiTab-wrapper": {},
     "& .MuiTab-root": {
       padding: "6px 0px",
       fontWeight: "bolder",

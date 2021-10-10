@@ -18,7 +18,7 @@ function PostCard(props) {
     title,
     slug,
     createdAt,
-    adventuresCategory,
+    adventureCategory,
     booksCategory,
     craftsCategory,
     momLifeCategory,
@@ -59,7 +59,7 @@ function PostCard(props) {
                   </Link>
                 </Grid>
               ) : null}
-              {adventuresCategory === true ? (
+              {adventureCategory === true ? (
                 <Grid item>
                   <Link to={`blog/adventures`} className={classes.tagLink}>
                     <Typography gutterBottom variant="button" display="block">

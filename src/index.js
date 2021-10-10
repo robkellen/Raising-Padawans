@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { createBrowserHistory } from "history";
 import { Router, Route, Redirect, Switch } from "react-router-dom";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { graphcmsKey } from "./utils/_graphcmsKey";
 import { ApolloProvider } from "@apollo/client/react";
 import { relayStylePagination } from "@apollo/client/utilities";
+import theme from "../src/utils/theme";
 
 const history = createBrowserHistory();
 
@@ -37,7 +39,9 @@ const routes = (
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <React.StrictMode>{routes}</React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <React.StrictMode>{routes}</React.StrictMode>
+    </ThemeProvider>
   </ApolloProvider>,
   document.getElementById("root")
 );

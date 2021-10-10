@@ -74,12 +74,7 @@ function HeroImage() {
       <Grid container justify="center">
         <Grid item xs={12}>
           <div className={classes.mainImageContent}>
-            <Typography
-              component="h1"
-              variant="h3"
-              color="inherit"
-              gutterBottom
-            >
+            <Typography variant="h2" color="inherit" gutterBottom>
               {title}
             </Typography>
             {/* <Typography variant="h5" color="inherit" paragraph>
