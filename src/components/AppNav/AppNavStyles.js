@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const drawerWidth = 240;
+const drawerWidth = 315;
 
 const useAppNavStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +26,6 @@ const useAppNavStyles = makeStyles((theme) => ({
   },
   rpTitleSvg: {
     fill: "red",
-    
   },
   iconList: {
     marginTop: 30,
@@ -46,7 +45,6 @@ const useAppNavStyles = makeStyles((theme) => ({
     fontWeight: "900",
   },
   aTag: {
-    color: "#DD9BAB",
     textDecoration: "none",
   },
   hide: {
@@ -85,11 +83,15 @@ const useAppNavStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 0, 0, 0),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  "@global": {
+    ".MuiTypography-body1": {
+      color: "#DD9BAB",
+    },
   },
 }));
 

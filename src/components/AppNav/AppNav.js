@@ -38,6 +38,29 @@ function AppNav() {
     setOpen(false);
   };
 
+  const linkList = [
+    {
+      url: "https://www.pinterest.com/raisingpadawans/",
+      icon: <PinterestIcon className={classes.iconButton} />,
+      text: "RP on Pinterest",
+    },
+    {
+      url: "https://www.instagram.com/raisingpadawans/",
+      icon: <InstagramIcon className={classes.iconButton} />,
+      text: "RP on Instagram",
+    },
+    {
+      url: "https://www.facebook.com/raisingpadawans-105607621570004",
+      icon: <FacebookIcon className={classes.iconButton} />,
+      text: "RP on Facebook",
+    },
+    {
+      url: "mailto:raisingpadawans@gmail.com",
+      icon: <MailIcon className={classes.iconButton} />,
+      text: "Message Us",
+    },
+  ];
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -45,9 +68,11 @@ function AppNav() {
         position="fixed"
         elevation={0}
         style={{ backgroundColor: "#DD9BAB" }}
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+        classes={{
+          root: clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          }),
+        }}
       >
         <Toolbar>
           <IconButton
@@ -55,9 +80,11 @@ function AppNav() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
+            classes={{
+              root: clsx(classes.menuButton, {
+                [classes.hide]: open,
+              }),
+            }}
           >
             <MenuIcon />
           </IconButton>
@@ -66,11 +93,11 @@ function AppNav() {
       </AppBar>
       <Drawer
         variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
         classes={{
+          root: clsx(classes.drawer, {
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
           paper: clsx({
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
@@ -87,59 +114,21 @@ function AppNav() {
           </IconButton>
         </div>
         <Divider />
-        <List className={classes.iconList}>
-          <a
-            href="https://www.pinterest.com/raisingpadawans/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.aTag}
-          >
-            <ListItem button className={classes.liButton}>
-              <ListItemIcon>
-                <PinterestIcon className={classes.iconButton} />
-              </ListItemIcon>
-              <ListItemText>RP on Pinterest</ListItemText>
-            </ListItem>
-          </a>
-          <a
-            href="https://www.instagram.com/raisingpadawans/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.aTag}
-          >
-            <ListItem button className={classes.liButton}>
-              <ListItemIcon>
-                <InstagramIcon className={classes.iconButton} />
-              </ListItemIcon>
-              <ListItemText>RP on Instagram</ListItemText>
-            </ListItem>
-          </a>
-          <a
-            href="https://www.facebook.com/raisingpadawans-105607621570004"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.aTag}
-          >
-            <ListItem button className={classes.liButton}>
-              <ListItemIcon>
-                <FacebookIcon className={classes.iconButton} />
-              </ListItemIcon>
-              <ListItemText>RP on Facebook</ListItemText>
-            </ListItem>
-          </a>
-          <a
-            href="mailto:rob.h.kellen@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={classes.aTag}
-          >
-            <ListItem button variant="raised" className={classes.liButton}>
-              <ListItemIcon>
-                <MailIcon className={classes.iconButton} />
-              </ListItemIcon>
-              <ListItemText>Send Us A Message</ListItemText>
-            </ListItem>
-          </a>
+        <List classes={{ root: classes.iconList }}>
+          {linkList.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={classes.aTag}
+              key={link.url}
+            >
+              <ListItem button classes={{ root: classes.liButton }}>
+                <ListItemIcon>{link.icon}</ListItemIcon>
+                <ListItemText>{link.text}</ListItemText>
+              </ListItem>
+            </a>
+          ))}
         </List>
       </Drawer>
     </React.Fragment>

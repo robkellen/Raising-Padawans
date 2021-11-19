@@ -10,6 +10,7 @@ const useHeroImageStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
+    backgroundAttachment: "fixed",
     display: "flex",
     minWidth: "100%",
     order: 1,

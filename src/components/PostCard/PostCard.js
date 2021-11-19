@@ -8,21 +8,30 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import usePostCardStyles from "./PostCardStyles";
 
-function PostCard(props) {
+function PostCard({
+  image,
+  title,
+  slug,
+  createdAt,
+  adventureCategory,
+  booksCategory,
+  craftsCategory,
+  momLifeCategory,
+}) {
   //define styles
   const classes = usePostCardStyles();
 
   //destructure properties needed for data utlized in this component
-  const {
-    image,
-    title,
-    slug,
-    createdAt,
-    adventureCategory,
-    booksCategory,
-    craftsCategory,
-    momLifeCategory,
-  } = props;
+  // const {
+  //   image,
+  //   title,
+  //   slug,
+  //   createdAt,
+  //   adventureCategory,
+  //   booksCategory,
+  //   craftsCategory,
+  //   momLifeCategory,
+  // } = props;
 
   //format timestamp into reader-friendly date
   let publishDate = new Date(createdAt).toLocaleDateString("en-us", {

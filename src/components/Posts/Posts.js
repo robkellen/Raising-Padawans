@@ -44,11 +44,14 @@ function Posts() {
   const itemsPerLoad = 6;
 
   //useQuery hook gets all posts and postsConnection data on page load
-  const {loading, error, data, fetchMore, networkStatus } = useQuery(getUrl(), {
-    fetchPolicy: "cache-and-network",
-    variables: { first: itemsPerLoad },
-    notifyOnNetworkStatusChange: true,
-  });
+  const { loading, error, data, fetchMore, networkStatus } = useQuery(
+    getUrl(),
+    {
+      fetchPolicy: "cache-and-network",
+      variables: { first: itemsPerLoad },
+      notifyOnNetworkStatusChange: true,
+    }
+  );
 
   //set reference for button to implement infinite scroll
   const observerRef = useRef(null);
@@ -79,7 +82,7 @@ function Posts() {
   }, [buttonRef]);
 
   //if useQuery hook is loading return loading spinner
-  if (loading) return <Loading />
+  // if (loading) return <Loading />;
   if (networkStatus === 1) return <Loading />;
   if (error) return `Error! ${error.message}`;
 
@@ -112,28 +115,30 @@ function Posts() {
               total={data.posts.aggregate.count}
             />
             <Grid item xs={12}>
-              <Box className={classes.loadMoreButton}>
-                {hasNextPage && (
-                  <Button
-                    ref={setButtonRef}
-                    id="buttonLoadMore"
-                    title="More Posts"
-                    aria-label="more posts"
-                    disabled={isRefetching}
-                    loading={isRefetching.toString()}
-                    onClick={() =>
-                      fetchMore({
-                        variables: {
-                          first: itemsPerLoad,
-                          after: data.posts.pageInfo.endCursor,
-                          delay,
-                        },
-                      })
-                    }
-                  >
-                    Loading...
-                  </Button>
-                )}
+              <Box classes={{ root: classes.loadMoreButton }}>
+                {hasNextPage &&
+                  (loading || networkStatus === 1 ? (
+                    <Loading />
+                  ) : (
+                    <Button
+                      ref={setButtonRef}
+                      id="buttonLoadMore"
+                      title="More Posts"
+                      aria-label="more posts"
+                      disabled={isRefetching}
+                      onClick={() =>
+                        fetchMore({
+                          variables: {
+                            first: itemsPerLoad,
+                            after: data.posts.pageInfo.endCursor,
+                            delay,
+                          },
+                        })
+                      }
+                    >
+                      Loading...
+                    </Button>
+                  ))}
               </Box>
             </Grid>
           </Grid>

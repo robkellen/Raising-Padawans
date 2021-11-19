@@ -15,21 +15,19 @@ function BlogContent() {
   let { path } = useRouteMatch();
 
   return (
-    <React.Fragment>
-      <Grid>
-        <Switch>
-          <Route exact path={path}>
-            <Grid item xs={12}>
-              <HeroImage />
-            </Grid>
-            <Container className={classes.postsContainer}>
-              <Posts />
-            </Container>
-          </Route>
-          <Route path={`${path}/:slug`} component={PostDetail} />
-        </Switch>
-      </Grid>
-    </React.Fragment>
+    <Grid>
+      <Switch>
+        <Route exact path={path}>
+          <Grid item xs={12}>
+            <HeroImage />
+          </Grid>
+          <Container className={classes.postsContainer}>
+            <Posts />
+          </Container>
+        </Route>
+        <Route path={`${path}/:slug`} component={PostDetail} />
+      </Switch>
+    </Grid>
   );
 }
 
