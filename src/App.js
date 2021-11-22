@@ -52,7 +52,6 @@ function App() {
                     render={() => (
                       <AppBar
                         position="static"
-                        // color="transparent"
                         className={classes.tabs}
                         elevation={0}
                       >
@@ -107,13 +106,16 @@ function App() {
                     )}
                   />
                   <Switch>
-                    <Route path={`${path}/mom-life`} component={BlogContent} />
+                    <Route exact path={path} component={BlogContent} />
                     <Route
-                      path={`${path}/adventures`}
+                      path={[
+                        `${path}/mom-life`,
+                        `${path}/adventures`,
+                        `${path}/books`,
+                        `${path}/crafts`,
+                      ]}
                       component={BlogContent}
                     />
-                    <Route path={`${path}/books`} component={BlogContent} />
-                    <Route path={`${path}/crafts`} component={BlogContent} />
                     <Route
                       exact
                       path={`${path}/about`}
@@ -124,7 +126,6 @@ function App() {
                       path={`${path}/:slug`}
                       component={PostDetail}
                     />
-                    <Route path={path} component={BlogContent} />
                   </Switch>
                 </div>
               </Grid>

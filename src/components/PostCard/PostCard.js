@@ -17,21 +17,10 @@ function PostCard({
   booksCategory,
   craftsCategory,
   momLifeCategory,
+  url,
 }) {
   //define styles
   const classes = usePostCardStyles();
-
-  //destructure properties needed for data utlized in this component
-  // const {
-  //   image,
-  //   title,
-  //   slug,
-  //   createdAt,
-  //   adventureCategory,
-  //   booksCategory,
-  //   craftsCategory,
-  //   momLifeCategory,
-  // } = props;
 
   //format timestamp into reader-friendly date
   let publishDate = new Date(createdAt).toLocaleDateString("en-us", {
@@ -41,7 +30,15 @@ function PostCard({
   });
 
   //build on url to create link to PostDetail page
-  const { url } = useRouteMatch();
+  // const { url } = useRouteMatch();
+
+  // categories to map over and display if post is marked as part of that specific category
+  const subLinks = [
+    { category: momLifeCategory, path: "mom-life", text: "Mom-Life" },
+    { category: adventureCategory, path: "adventures", text: "Adventures" },
+    { category: booksCategory, path: "books", text: "Books" },
+    { category: craftsCategory, path: "crafts", text: "Crafts" },
+  ];
 
   return (
     <React.Fragment>
@@ -59,42 +56,20 @@ function PostCard({
             }}
           >
             <Grid container spacing={2}>
-              {momLifeCategory === true ? (
-                <Grid item>
-                  <Link to={`blog/mom-life`} className={classes.tagLink}>
-                    <Typography gutterBottom variant="button" display="block">
-                      Mom-Life
-                    </Typography>
-                  </Link>
-                </Grid>
-              ) : null}
-              {adventureCategory === true ? (
-                <Grid item>
-                  <Link to={`blog/adventures`} className={classes.tagLink}>
-                    <Typography gutterBottom variant="button" display="block">
-                      Adventures
-                    </Typography>
-                  </Link>
-                </Grid>
-              ) : null}
-              {booksCategory === true ? (
-                <Grid item>
-                  <Link to={`blog/books`} className={classes.tagLink}>
-                    <Typography gutterBottom variant="button" display="block">
-                      Books
-                    </Typography>
-                  </Link>
-                </Grid>
-              ) : null}
-              {craftsCategory === true ? (
-                <Grid item>
-                  <Link to={`blog/crafts`} className={classes.tagLink}>
-                    <Typography gutterBottom variant="button" display="block">
-                      Crafts
-                    </Typography>
-                  </Link>
-                </Grid>
-              ) : null}
+              {subLinks.map((subLink) =>
+                subLink.category === true && url !== `/blog/${subLink.path}` ? (
+                  <Grid item key={subLink.path}>
+                    <Link
+                      to={`/blog/${subLink.path}`}
+                      className={classes.tagLink}
+                    >
+                      <Typography gutterBottom variant="button" display="block">
+                        {subLink.text}
+                      </Typography>
+                    </Link>
+                  </Grid>
+                ) : null
+              )}
             </Grid>
             <Link className={classes.title} to={`${url}/${slug}`}>
               <Grid item>

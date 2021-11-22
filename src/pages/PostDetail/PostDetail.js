@@ -52,10 +52,10 @@ function PostDetail() {
     `
       );
 
+      setLoading(false);
       setPost(post);
-
-      return setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };

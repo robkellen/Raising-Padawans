@@ -106,6 +106,7 @@ function Posts() {
                 adventureCategory={post.node.adventureCategory}
                 booksCategory={post.node.booksCategory}
                 craftsCategory={post.node.craftsCategory}
+                url={url}
               />
             </Grid>
           ))}
