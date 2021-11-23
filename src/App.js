@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import clsx from "clsx";
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,6 +25,9 @@ function App() {
   //defining classes and theme
   const classes = useAppStyles();
 
+  // state to determine which tab is selected
+  const [selected, setSelected] = useState("Home");
+
   //determine screen size of user to make tabs centered on large devices, and scrollable on small devices
   const theme = useTheme();
   const scrollableTabs = useMediaQuery(theme.breakpoints.down("sm"));
@@ -32,6 +36,23 @@ function App() {
   // relative to the parent route. The `url` lets
   // us build relative links.
   const { path, url } = useRouteMatch();
+
+  console.log(path);
+
+  const tabLinks = [
+    { label: "Home", linkPath: `${url}` },
+    { label: "Mom Life", linkPath: `${url}/mom-life` },
+    { label: "Adventures", linkPath: `${url}/adventures` },
+    { label: "Books", linkPath: `${url}/books` },
+    { label: "Crafts", linkPath: `${url}/crafts` },
+    { label: "About", linkPath: `${url}/about` },
+  ];
+
+  const handleChange = (event, newValue) => {
+    setSelected(newValue);
+  };
+
+  console.log(selected);
 
   return (
     <Router>
@@ -62,45 +83,23 @@ function App() {
                           centered={!scrollableTabs}
                           aria-label="blog navigation items"
                           classes={{ indicator: classes.indicator }}
+                          onChange={handleChange}
                         >
-                          <Tab
-                            component={Link}
-                            label="Home"
-                            className={classes.divider}
-                            to={`${url}`}
-                          />
-                          <Tab
-                            component={Link}
-                            label="Mom Life"
-                            className={classes.divider}
-                            to={`${url}/mom-life`}
-                          />
-                          <Tab
-                            component={Link}
-                            label="Adventures"
-                            className={classes.divider}
-                            to={`${url}/adventures`}
-                          />
-                          <Tab
-                            component={Link}
-                            aria-label="Books"
-                            label="Books"
-                            className={classes.divider}
-                            to={`${url}/books`}
-                          />
-                          <Tab
-                            component={Link}
-                            aria-label="Crafts"
-                            label="Crafts"
-                            className={classes.divider}
-                            to={`${url}/crafts`}
-                          />
-                          <Tab
-                            component={Link}
-                            aria-label="About"
-                            label="About"
-                            to={`${url}/about`}
-                          />
+                          {tabLinks.map((tabLink) => (
+                            <Tab
+                              key={tabLink.label}
+                              component={Link}
+                              label={tabLink.label}
+                              classes={{
+                                root: clsx(classes.divider, {
+                                  [classes.selected]:
+                                    selected === tabLink.label,
+                                }),
+                              }}
+                              to={tabLink.linkPath}
+                              value={tabLink.label}
+                            />
+                          ))}
                         </Tabs>
                       </AppBar>
                     )}

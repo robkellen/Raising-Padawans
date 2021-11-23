@@ -39,12 +39,11 @@ const useAppStyles = makeStyles((theme) => ({
     color: "#fff",
     borderTop: "thin solid gray",
     borderBottom: "thin solid gray",
-    "& span.MuiTab-wrapper": {},
     "& .MuiTab-root": {
       padding: "6px 0px",
       fontWeight: "bolder",
       "&:hover": {
-        color: "#DD9BAB",
+        color: "#fff",
       },
     },
   },
@@ -52,15 +51,18 @@ const useAppStyles = makeStyles((theme) => ({
     display: "none",
   },
   divider: {
-    color: "#fff",
+    color: "#DD9BAB",
     "& span.MuiTab-wrapper": {
-      // color: "white",
       borderRight: "3px solid #DD9BAB",
       [theme.breakpoints.down("md")]: {
-        // padding: "2px 5px 2px 0px",
         borderRight: "2px solid rgba(0, 0, 0, 0.54)",
         padding: "2px 10px",
       },
+    },
+  },
+  selected: {
+    "& span.MuiTab-wrapper": {
+      color: "#fff",
     },
   },
 }));
